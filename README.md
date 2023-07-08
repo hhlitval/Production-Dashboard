@@ -1,4 +1,4 @@
 # Production Analysis
-Provides a visual representation of production output and allows to quantify production losses. Production Analysis allows to evaluate the reliability of manufacturing processes. 
+Provides a visual representation of production output, allows to quantify production losses and evaluate the reliability of manufacturing processes. 
 
 *** under construction ***
