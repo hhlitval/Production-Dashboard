@@ -4,8 +4,85 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Production_Analysis"
-        mc:Ignorable="d" Height="900" Width="1400">
-    <Grid>
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        mc:Ignorable="d" Height="900" Width="1400" 
+        WindowStartupLocation="CenterScreen" 
+        Background="Transparent" AllowsTransparency="True"
+        WindowStyle="None" ResizeMode="NoResize">
+    <Border Style="{StaticResource mainBorder}" MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-    </Grid>
+            <!-- Title Bar -->
+            <Border Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="10 10 0 0">
+                <Border.Background>
+                    <ImageBrush Stretch="UniformToFill" ImageSource="\Images\proanalysis.png"/>
+                </Border.Background>
+                <!--<TextBlock Text="Production Analysis" Margin="20 0 0 0" FontSize="25" FontWeight="Bold"
+                           VerticalAlignment="Center" Foreground="#525174" FontFamily="Techover"/>-->
+            </Border>
+
+            <!-- Production Chart -->
+            <Border Grid.Row="1" Background="#ffffff" CornerRadius="10" 
+                    Margin="20 10 5 5" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Produktionsvolumen" 
+                               Style="{StaticResource viewTitle}"/>
+                    <lvc:CartesianChart Grid.Row="1" Series="{Binding Series}" 
+                                        ZoomMode="X" LegendPosition="Bottom"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="1"  Background="#ffffff" CornerRadius="10" 
+                    Margin="5 10 20 5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Energieverbrauch" 
+                               Style="{StaticResource viewTitle}"/>
+                    <lvc:CartesianChart Grid.Row="1" Series="{Binding StackedSeries}" 
+                                        AnimationsSpeed="00:00:02"
+                                        XAxes="{Binding XAxes}"
+                                        YAxes="{Binding YAxes}"/>
+                    <TextBlock Grid.Row="2" Text="CO Emissionen" 
+                               Style="{StaticResource viewTitle}"/>
+                    <lvc:CartesianChart Grid.Row="3" Series="{Binding StackedSeries2}" 
+                                        AnimationsSpeed="00:00:03"
+                                        XAxes="{Binding XAxes}"
+                                        YAxes="{Binding YAxes}">                       
+
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+            
+            
+
+
+
+            <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="5 5 20 20"
+                    Background="#ffffff" CornerRadius="10">
+                <lvc:GeoMap Series="{Binding GeoSeries}" MapProjection="Mercator" ToolTip="{Binding}"
+                            Height="450"/>
+            </Border>
+            <Border Grid.Row="4" Grid.ColumnSpan="2" CornerRadius="0 0 10 10" Background="#bee3db"/>
+        </Grid>
+    </Border>
 </Window>
