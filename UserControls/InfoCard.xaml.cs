@@ -24,5 +24,23 @@ namespace Production_Analysis.UserControls
         {
             InitializeComponent();
         }
+
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
+
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(InfoCard));
+
+        public string Output
+        {
+            get { return (string)GetValue(OutputProperty); }
+            set { SetValue(OutputProperty, value); }
+        }
+
+        public static readonly DependencyProperty OutputProperty =
+            DependencyProperty.Register("Output", typeof(string), typeof(InfoCard));
     }
 }
