@@ -4,6 +4,24 @@
              xmlns:local="clr-namespace:Production_Analysis"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
+        <Style x:Key="mainBorder" TargetType="Border">
+            <Setter Property="Background" Value="#edf6f9"/>
+            <Setter Property="CornerRadius" Value="20"/>            
+            <Setter Property="BorderThickness" Value="15"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#006d77" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>                        
+        </Style>
+
+        <Style x:Key="viewTitle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#656565"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="15 10 0 0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
     </Application.Resources>
 </Application>
