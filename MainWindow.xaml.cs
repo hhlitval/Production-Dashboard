@@ -67,13 +67,15 @@ namespace Production_Analysis
                 {                
                 new ColumnSeries<double>
                 {
+                    Name = "Produktionsmenge",
                     Values = new double[] { 4, 2, 2, 8, 1, 6, 3 },
-                    Fill = new SolidColorPaint(new SKColor(136,80,83))
+                    Fill = new SolidColorPaint(new SKColor(226, 149, 120))
                 },
                 new LineSeries<double>
                 {
+                    Name = "Materialproduktivität",
                     Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
-                    Stroke = new SolidColorPaint(new SKColor(45,69,89)) {StrokeThickness = 5},                    
+                    Stroke = new SolidColorPaint(new SKColor(0, 109, 119)) {StrokeThickness = 3},                    
                     Fill = null
                 }
                 };
@@ -83,8 +85,8 @@ namespace Production_Analysis
                 new StackedAreaSeries<double>
                 {
                     Values = new List<double> { 3, 2, 3, 5, 3, 4, 6 },
-                    Stroke = new SolidColorPaint(new SKColor(119, 125, 167)){StrokeThickness = 2},
-                    Fill = new LinearGradientPaint(new [] { new SKColor(156, 164, 217), new SKColor(215, 219, 247) }, new SKPoint(0.5f, 0),new SKPoint(0.5f, 1)),
+                    Stroke = new SolidColorPaint(new SKColor(0, 109, 119)){StrokeThickness = 2},
+                    Fill = new LinearGradientPaint(new [] { new SKColor(21, 165, 179), new SKColor(126, 232, 242) }, new SKPoint(0.5f, 0),new SKPoint(0.5f, 1)),
                     LineSmoothness = 0
                 }                
             };
@@ -121,9 +123,9 @@ namespace Production_Analysis
                 GeoSeries = new HeatLandSeries[] { new HeatLandSeries { 
                     HeatMap = new[]
                         {
-                            new SKColor(250,219,217).AsLvcColor(), // the first element is the "coldest" 
-                            new SKColor(255,195,191).AsLvcColor(),
-                            new SKColor(254,95,85).AsLvcColor() // the last element is the "hottest" 
+                            new SKColor(21, 165, 179).AsLvcColor(), // the first element is the "coldest" 
+                            new SKColor(126, 232, 242).AsLvcColor(),
+                            new SKColor(0,109,119).AsLvcColor() // the last element is the "hottest" 
                         }, 
                     Lands = lands } 
                 };
