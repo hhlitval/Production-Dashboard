@@ -9,7 +9,7 @@
         mc:Ignorable="d" Height="900" Width="1400" 
         WindowStartupLocation="CenterScreen" 
         Background="Transparent" AllowsTransparency="True"
-        WindowStyle="None" ResizeMode="NoResize" FontFamily="Dubai">
+        WindowStyle="None" ResizeMode="NoResize" FontFamily="Global User Interface">
     <Border Style="{StaticResource mainBorder}" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
@@ -46,11 +46,11 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <uc:InfoCard Grid.Row="0"/>
-                    <uc:InfoCard Grid.Row="1"/>
-                    <uc:InfoCard Grid.Row="2"/>
-                    <uc:InfoCard Grid.Row="3"/>
-                    <uc:InfoCard Grid.Row="4"/>
+                    <uc:InfoCard Grid.Row="0" Title="PRODUKTION GESAMT" Output="1253678 t"/>
+                    <uc:InfoCard Grid.Row="1" Title="SCHICHT #1" Output="203601 t"/>
+                    <uc:InfoCard Grid.Row="2" Title="SCHICHT #2" Output="250124 t"/>
+                    <uc:InfoCard Grid.Row="3" Title="SCHICHT #3" Output="377802 t"/>
+                    <uc:InfoCard Grid.Row="4" Title="SCHICHT #4" Output="143889 t"/>
                 </Grid>
             </Border>
             
@@ -62,7 +62,7 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Produktion" 
+                    <TextBlock Grid.Row="0" Text="PRODUKTION" 
                                Style="{StaticResource viewTitle}"/>
                     <lvc:CartesianChart Grid.Row="1" Series="{Binding Series}" 
                                         ZoomMode="X" LegendPosition="Bottom"/>                    
@@ -78,13 +78,13 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Energieverbrauch" 
+                    <TextBlock Grid.Row="0" Text="ENERGIEVERBRAUCH" 
                                Style="{StaticResource viewTitle}"/>
                     <lvc:CartesianChart Grid.Row="1" Series="{Binding StackedSeries}" 
                                         AnimationsSpeed="00:00:03"
                                         XAxes="{Binding XAxes}"
                                         YAxes="{Binding YAxes}"/>
-                    <TextBlock Grid.Row="2" Text="Emissionen" 
+                    <TextBlock Grid.Row="2" Text="EMISSIONEN" 
                                Style="{StaticResource viewTitle}"/>
                     <lvc:CartesianChart Grid.Row="3" Series="{Binding StackedSeries2}" 
                                         AnimationsSpeed="00:00:03"
@@ -94,11 +94,21 @@
                     </lvc:CartesianChart>
                 </Grid>
             </Border>
-            <Border Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="5 5 20 20"
+            <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="5 5 20 20"
                     CornerRadius="10">
-                <lvc:GeoMap Series="{Binding GeoSeries}" MapProjection="Mercator" ToolTip="{Binding}"
-                            Height="450"/>
+                <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Text="VERSAND INFOGRAFIK" 
+                               Style="{StaticResource viewTitle}"/>
+                    <lvc:GeoMap Grid.Row="2" Series="{Binding GeoSeries}" MapProjection="Mercator" ToolTip="{Binding}"
+                            Height="450" Width="450"/>
+                </Grid>
             </Border>
+            <DataGrid Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Margin="0 10 20 20"></DataGrid>
             <Border Grid.Row="4" Grid.ColumnSpan="3" CornerRadius="0 0 10 10" Background="#bee3db"/>
         </Grid>
     </Border>
