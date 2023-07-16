@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Production_Analysis"
         xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         xmlns:uc="clr-namespace:Production_Analysis.UserControls"
+        xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" Height="900" Width="1400" 
         WindowStartupLocation="CenterScreen" 
         Background="Transparent" AllowsTransparency="True"
@@ -32,7 +33,37 @@
                 </Border.Background>
                 <!--<TextBlock Text="Production Analysis" Margin="20 0 0 0" FontSize="25" FontWeight="Bold"
                            VerticalAlignment="Center" Foreground="#525174"/>-->
+                
             </Border>
+            
+            <!-- Control Menu -->
+            <Border Grid.Column="1" Grid.Row="0"  Background="#ffffff"
+                    CornerRadius="10" Margin="0 10" Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ToggleButton Grid.Column="0" Content="2023" Style="{StaticResource toggleButton}"/>
+                    <ToggleButton Grid.Column="1" Content="2022" Style="{StaticResource toggleButton}"/>
+                    <ToggleButton Grid.Column="2" Content="2021" Style="{StaticResource toggleButton}"/>
+                    <ToggleButton Grid.Column="3" Content="Gesamt" Style="{StaticResource toggleButton}"/>
+                </Grid>                
+            </Border>
+
+            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Margin="0 0 10 0" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Style="{StaticResource topMenuButton}">
+                    <icon:PackIconMaterial Kind="WindowMinimize" Style="{StaticResource topMenuIcon}"/>
+                </Button>
+                <Button Style="{StaticResource topMenuButton}">
+                    <icon:PackIconMaterial Kind="WindowMaximize" Style="{StaticResource topMenuIcon}"/>
+                </Button>
+                <Button Style="{StaticResource topMenuButton}" Click="CloseButton_Click" >
+                    <icon:PackIconMaterial Kind="Close" Style="{StaticResource topMenuIcon}"/>
+                </Button>
+            </StackPanel>
 
             <!-- Production Key Indicators -->
             <Border Grid.Row="1" Grid.Column="0" Background="#ffffff" CornerRadius="10 0 0 10" 
