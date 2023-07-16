@@ -41,6 +41,12 @@ namespace Production_Analysis
                 this.DragMove();
             }
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
         public class ViewModel
         {
             public Axis[] XAxes { get; set; } = new Axis[]
