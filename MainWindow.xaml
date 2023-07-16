@@ -32,7 +32,12 @@
                 </Border.Background>
                 <!--<TextBlock Text="Production Analysis" Margin="20 0 0 0" FontSize="25" FontWeight="Bold"
                            VerticalAlignment="Center" Foreground="#525174"/>-->
+                
             </Border>
+            
+            <!-- Control Menu -->
+            <Border Grid.Column="1" Grid.Row="0"  Background="#ffffff"
+                    CornerRadius="10" Margin="0 10"/>
 
             <!-- Production Key Indicators -->
             <Border Grid.Row="1" Grid.Column="0" Background="#ffffff" CornerRadius="10 0 0 10" 
