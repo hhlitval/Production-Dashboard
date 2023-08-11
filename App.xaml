@@ -74,30 +74,38 @@
         </Style>
         
         <Style x:Key="mainBorder" TargetType="Border">
-            <Setter Property="Background" Value="#edf6f9"/>
+            <Setter Property="Background" Value="#f9f9f9"/>
             <Setter Property="CornerRadius" Value="20"/>            
             <Setter Property="BorderThickness" Value="15"/>
             <Setter Property="BorderBrush">
                 <Setter.Value>
-                    <SolidColorBrush Color="#006d77" Opacity="0.5"/>
+                    <SolidColorBrush Color="#5aa9e6" Opacity="0.5"/>
                 </Setter.Value>
             </Setter>                        
         </Style>
 
         <Style x:Key="viewTitle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#2b2d42"/>
+            <Setter Property="Foreground" Value="#31393c"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="15 10 0 0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="titleInfoCard" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#f9f9f9"/>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Margin" Value="15 10 0 0"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-       
+
         <Style x:Key="ProgressBarStyle" TargetType="{x:Type ProgressBar}">
             <Setter Property="Foreground">
                 <Setter.Value>
                     <LinearGradientBrush>
-                        <GradientStop Color="#ffddd2" Offset="0.4"/>
-                        <GradientStop Color="#e29578" Offset="1"/>
+                        <GradientStop Color="#ffd166" Offset="0.4"/>
+                        <GradientStop Color="#ef476f" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>

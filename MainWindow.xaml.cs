@@ -28,6 +28,17 @@ namespace Production_Analysis
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly SKColor productionChartColor = new SKColor(216, 49, 91);
+        private static readonly SolidColorPaint productivityChartColor = new SolidColorPaint(new SKColor(0, 48, 73)) { StrokeThickness = 3 };
+
+        private static readonly LinearGradientPaint energyConsumptionChartColor = new LinearGradientPaint(new[] 
+                                { new SKColor(239, 71, 111), new SKColor(255, 250, 255) }, new SKPoint(0.5f, 0), new SKPoint(0.5f, 1));
+        private static readonly SolidColorPaint energyConsumptionStrokeColor = new SolidColorPaint(new SKColor(239, 71, 111)) { StrokeThickness = 2 };
+
+        private static readonly LinearGradientPaint emissionsChartColor = new LinearGradientPaint(new[] 
+                                { new SKColor(6, 214, 160), new SKColor(255, 250, 255) }, new SKPoint(0.5f, 0), new SKPoint(0.5f, 1));
+        private static readonly SolidColorPaint emissionsStrokeColor = new SolidColorPaint(new SKColor(6, 214, 160)) { StrokeThickness = 2 };
+
         public MainWindow()
         {
             InitializeComponent();            
@@ -75,13 +86,13 @@ namespace Production_Analysis
                 {
                     Name = "Produktionsmenge",
                     Values = new double[] { 4, 2, 2, 8, 1, 6, 3 },
-                    Fill = new SolidColorPaint(new SKColor(226, 149, 120))
+                    Fill = new SolidColorPaint(productionChartColor)
                 },
                 new LineSeries<double>
                 {
                     Name = "Materialproduktivität",
                     Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
-                    Stroke = new SolidColorPaint(new SKColor(0, 109, 119)) {StrokeThickness = 3},                    
+                    Stroke = productivityChartColor,   
                     Fill = null
                 }
                 };
@@ -91,9 +102,9 @@ namespace Production_Analysis
                 new StackedAreaSeries<double>
                 {
                     Values = new List<double> { 3, 2, 3, 5, 3, 4, 6 },
-                    Stroke = new SolidColorPaint(new SKColor(0, 109, 119)){StrokeThickness = 2},
-                    Fill = new LinearGradientPaint(new [] { new SKColor(21, 165, 179), new SKColor(126, 232, 242) }, new SKPoint(0.5f, 0),new SKPoint(0.5f, 1)),
-                    LineSmoothness = 0
+                    Stroke = energyConsumptionStrokeColor,
+                    Fill = energyConsumptionChartColor,
+                    LineSmoothness = 0.2
                 }                
             };
 
@@ -102,11 +113,12 @@ namespace Production_Analysis
                 new StackedAreaSeries<double>
                 {
                     Values = new List<double> { 6, 2, 5, 3, 5, 4, 2 },
-                    Stroke = new SolidColorPaint(new SKColor(252, 134, 126)){StrokeThickness = 2},
-                    Fill = new LinearGradientPaint(new [] { new SKColor(252, 134, 126), new SKColor(252, 226, 225) }, new SKPoint(0.5f, 0),new SKPoint(0.5f, 1)),
-                    LineSmoothness = 0
+                    Stroke = emissionsStrokeColor,
+                    Fill = emissionsChartColor,
+                    LineSmoothness = 0.2
                 }
             };
+
             public ViewModel()
             {
                 var lands = new HeatLand[]
@@ -114,24 +126,25 @@ namespace Production_Analysis
                 new() { Name = "bra", Value = 13 },
                 new() { Name = "mex", Value = 10 },
                 new() { Name = "usa", Value = 20 },
-                new() { Name = "kaz", Value = 8 },
+                new() { Name = "kaz", Value = 1 },
                 new() { Name = "ind", Value = 12 },
                 new() { Name = "deu", Value = 13 },
                 new() { Name= "jpn", Value = 15 },
-                new() { Name = "chn", Value = 14 },
+                new() { Name = "chn", Value = 20 },
                 new() { Name = "nor", Value = 11 },
                 new() { Name = "fra", Value = 8 },
                 new() { Name = "esp", Value = 7 },
                 new() { Name = "kor", Value = 10 },
                 new() { Name = "zaf", Value = 12 },
+                new() { Name = "tur", Value = 5 },
                 new() { Name = "are", Value = 13 }
                 };
                 GeoSeries = new HeatLandSeries[] { new HeatLandSeries { 
                     HeatMap = new[]
                         {
-                            new SKColor(21, 165, 179).AsLvcColor(), // the first element is the "coldest" 
-                            new SKColor(126, 232, 242).AsLvcColor(),
-                            new SKColor(0,109,119).AsLvcColor() // the last element is the "hottest" 
+                            new SKColor(76, 201, 240).AsLvcColor(), // the first element is the "coldest" 
+                            new SKColor(17, 138, 178).AsLvcColor(),
+                            new SKColor(7, 59, 76).AsLvcColor() // the last element is the "hottest" 
                         }, 
                     Lands = lands } 
                 };
