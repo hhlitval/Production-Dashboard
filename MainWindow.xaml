@@ -10,27 +10,27 @@
         mc:Ignorable="d" Height="900" Width="1400" 
         WindowStartupLocation="CenterScreen" 
         Background="Transparent" AllowsTransparency="True"
-        WindowStyle="None" ResizeMode="NoResize" FontFamily="Calibri">
+        WindowStyle="None" ResizeMode="NoResize" >
     <Border Style="{StaticResource mainBorder}" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="0.8*"/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <!-- Title Bar -->
-            <Border Grid.Row="0" Grid.ColumnSpan="3" CornerRadius="10 10 0 0">
-                <Border.Background>
+            <Border Grid.Row="0" Grid.ColumnSpan="3" CornerRadius="10 10 0 0" Background="#7fc8f8">
+                <!--<Border.Background>
                     <ImageBrush Stretch="UniformToFill" ImageSource="\Images\proanalysis.png"/>
-                </Border.Background>
+                </Border.Background>-->
                 <!--<TextBlock Text="Production Analysis" Margin="20 0 0 0" FontSize="25" FontWeight="Bold"
                            VerticalAlignment="Center" Foreground="#525174"/>-->
                 
@@ -38,7 +38,7 @@
             
             <!-- Control Menu -->
             <Border Grid.Column="1" Grid.Row="0"  Background="#ffffff"
-                    CornerRadius="10" Margin="0 10" Padding="10">
+                    CornerRadius="10" Margin="0 10" Padding="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -77,11 +77,11 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <uc:InfoCard Grid.Row="0" Title="PRODUKTION GESAMT" Output="1253678 t"/>
-                    <uc:InfoCard Grid.Row="1" Title="SCHICHT #1" Output="203601 t"/>
-                    <uc:InfoCard Grid.Row="2" Title="SCHICHT #2" Output="250124 t"/>
-                    <uc:InfoCard Grid.Row="3" Title="SCHICHT #3" Output="377802 t"/>
-                    <uc:InfoCard Grid.Row="4" Title="SCHICHT #4" Output="143889 t"/>
+                    <uc:InfoCard Grid.Row="0" Title="Gesamtproduktion " Output="1253678 t"/>
+                    <uc:InfoCard Grid.Row="1" Title="Schicht #1" Output="203601 t"/>
+                    <uc:InfoCard Grid.Row="2" Title="Schicht #2" Output="250124 t"/>
+                    <uc:InfoCard Grid.Row="3" Title="Schicht #3" Output="377802 t"/>
+                    <uc:InfoCard Grid.Row="4" Title="Schicht #4" Output="143889 t"/>
                 </Grid>
             </Border>
             
@@ -93,7 +93,7 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="PRODUKTION" 
+                    <TextBlock Grid.Row="0" Text="Produktion" 
                                Style="{StaticResource viewTitle}"/>
                     <lvc:CartesianChart Grid.Row="1" Series="{Binding Series}" 
                                         ZoomMode="X" LegendPosition="Bottom"/>                    
@@ -109,13 +109,13 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="ENERGIEVERBRAUCH" 
+                    <TextBlock Grid.Row="0" Text="Energieverbrauch" 
                                Style="{StaticResource viewTitle}"/>
                     <lvc:CartesianChart Grid.Row="1" Series="{Binding StackedSeries}" 
                                         AnimationsSpeed="00:00:03"
                                         XAxes="{Binding XAxes}"
                                         YAxes="{Binding YAxes}"/>
-                    <TextBlock Grid.Row="2" Text="EMISSIONEN" 
+                    <TextBlock Grid.Row="2" Text="Emissionen" 
                                Style="{StaticResource viewTitle}"/>
                     <lvc:CartesianChart Grid.Row="3" Series="{Binding StackedSeries2}" 
                                         AnimationsSpeed="00:00:03"
@@ -133,14 +133,27 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                     
-                    <TextBlock Grid.Row="0" Text="VERSAND INFOGRAFIK" 
+                    <TextBlock Grid.Row="0" Text="Versand Infografik" 
                                Style="{StaticResource viewTitle}"/>
                     <lvc:GeoMap Grid.Row="2" Series="{Binding GeoSeries}" MapProjection="Mercator" ToolTip="{Binding}"
                             Height="450" Width="450"/>
                 </Grid>
             </Border>
-            <DataGrid Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Margin="0 10 20 20"></DataGrid>
-            <Border Grid.Row="4" Grid.ColumnSpan="3" CornerRadius="0 0 10 10" Background="#bee3db"/>
+            <DataGrid Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Margin="0 10 20 20"
+                      ItemsSource="{Binding Lands}"
+                      CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" 
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                      RowStyle="{DynamicResource DataGridRowStyle1}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Land" IsReadOnly="True" CanUserResize="True" Width="3*" 
+                                        Binding="{Binding FileName}"/>
+                    <DataGridTextColumn Header="Versand" IsReadOnly="True" CanUserResize="True" Width="2*"
+                                        Binding="{Binding FileSize}"/>
+                    <DataGridTextColumn Header="%" IsReadOnly="True" CanUserResize="True" Width="*"
+                                        Binding="{Binding FilePath}"/>                    
+                </DataGrid.Columns>
+            </DataGrid>
+            <Border Grid.Row="4" Grid.ColumnSpan="3" CornerRadius="0 0 10 10" Background="#7fc8f8"/>
         </Grid>
     </Border>
 </Window>

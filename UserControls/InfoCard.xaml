@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Production_Analysis.UserControls"
              mc:Ignorable="d" Name="infoCard">
-    <Border Background="#edf6f9" CornerRadius="10" Margin="0 2.5 0 2.5">
+    <Border Background="#5aa9e6" CornerRadius="10" Margin="0 2.5 0 2.5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
@@ -16,8 +16,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding ElementName=infoCard, Path=Title}" Style="{StaticResource viewTitle}" Margin="20 15 0 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=infoCard, Path=Output}" Style="{StaticResource viewTitle}" Margin="0 15 0 0"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding ElementName=infoCard, Path=Title}" Style="{StaticResource titleInfoCard}" Margin="20 15 0 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=infoCard, Path=Output}" Style="{StaticResource titleInfoCard}" Margin="0 15 0 0"/>
             <ProgressBar Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Value="90" Style="{DynamicResource ProgressBarStyle}"                                  
                                  VerticalAlignment="Center" 
                                  HorizontalAlignment="Center"
