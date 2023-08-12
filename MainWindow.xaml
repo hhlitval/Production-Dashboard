@@ -21,13 +21,15 @@
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.8*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Title Bar -->
-            <Border Grid.Row="0" Grid.ColumnSpan="3" CornerRadius="10 10 0 0" Background="#7fc8f8">
+            <Border Grid.Row="0" Grid.ColumnSpan="5" CornerRadius="10 10 0 0" Background="#7fc8f8">
                 <!--<Border.Background>
                     <ImageBrush Stretch="UniformToFill" ImageSource="\Images\proanalysis.png"/>
                 </Border.Background>-->
@@ -37,7 +39,7 @@
             </Border>
             
             <!-- Control Menu -->
-            <Border Grid.Column="1" Grid.Row="0"  Background="#ffffff"
+            <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Background="#ffffff"
                     CornerRadius="10" Margin="0 10" Padding="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -53,7 +55,7 @@
                 </Grid>                
             </Border>
 
-            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Margin="0 0 10 0" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" Margin="0 0 10 0" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button Style="{StaticResource topMenuButton}">
                     <icon:PackIconMaterial Kind="WindowMinimize" Style="{StaticResource topMenuIcon}"/>
                 </Button>
@@ -66,7 +68,7 @@
             </StackPanel>
 
             <!-- Production Key Indicators -->
-            <Border Grid.Row="1" Grid.Column="0" Background="#ffffff" CornerRadius="10 0 0 10" 
+            <Border Grid.Row="1" Grid.Column="0" Background="#ffffff" CornerRadius="10" 
                     Margin="20 10 0 5" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -86,7 +88,7 @@
             </Border>
             
             <!-- Production Chart -->
-            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Background="#ffffff" CornerRadius="0 10 10 0" 
+            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  Background="Transparent" CornerRadius="0 10 10 0" 
                     Margin="0 10 20 5" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -98,43 +100,53 @@
                     <lvc:CartesianChart Grid.Row="1" Series="{Binding Series}" 
                                         ZoomMode="X" LegendPosition="Bottom"/>                    
                 </Grid>
-            </Border>            
+            </Border>
 
-            <Border Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Background="#ffffff" CornerRadius="10" 
+            <Border Grid.Row="1" Grid.Column="4" Background="#ffffff" CornerRadius="10" 
+                    Margin="0 10 20 5" Padding="10">
+                <lvc:PieChart Series="{Binding PieSeries}" LegendPosition="Hidden"/>
+            </Border>
+
+            <!-- Energy consumption / Emissions -->
+            <Border Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Background="Transparent" CornerRadius="10" 
                     Margin="20 10 5 20">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Text="Energieverbrauch" Width="320"
+                    
+                        <TextBlock Grid.Row="0" Text="Energieverbrauch" 
                                Style="{StaticResource viewTitle}"/>
-                        <icon:PackIconMaterial Kind="LightningBolt" 
+                        <icon:PackIconMaterial Grid.Row="0" Grid.RowSpan="2"
+                                               Kind="LightningBolt" 
                                                Style="{StaticResource sidePanelIcon}"
                                                HorizontalAlignment="Right"
-                                               VerticalAlignment="Bottom"
-                                               Margin="0 0 0 0"/>
+                                               VerticalAlignment="Center"
+                                               Margin="0 0 5 0"/>
                         
-                    </StackPanel>
-                    <lvc:CartesianChart Grid.Row="1" Series="{Binding StackedSeries}" 
+                    
+                    <lvc:CartesianChart Grid.Row="2" Series="{Binding StackedSeries}" 
                                         AnimationsSpeed="00:00:03"
                                         XAxes="{Binding XAxes}"
                                         YAxes="{Binding YAxes}"/>
-                    <StackPanel Grid.Row="2" Orientation="Horizontal">
-                        <TextBlock Grid.Row="2" Text="Emissionen" Width="320"
+                    
+                        <TextBlock Grid.Row="3" Text="Emissionen" 
                                Style="{StaticResource viewTitle}"/>
-                        <icon:PackIconMaterial Kind="Smoke" 
+                    <icon:PackIconMaterial Grid.Row="3" Grid.RowSpan="2"
+                                               Kind="Smog" 
                                                Style="{StaticResource sidePanelIcon}"
                                                HorizontalAlignment="Right"
-                                               VerticalAlignment="Bottom"
-                                               Margin="0 0 0 0"/>
+                                               VerticalAlignment="Center"
+                                               Margin="0 0 5 0"/>
                         
-                    </StackPanel>
-                    
-                    <lvc:CartesianChart Grid.Row="3" Series="{Binding StackedSeries2}" 
+                   
+
+                    <lvc:CartesianChart Grid.Row="5" Series="{Binding StackedSeries2}" 
                                         AnimationsSpeed="00:00:03"
                                         XAxes="{Binding XAxes}"
                                         YAxes="{Binding YAxes}">                       
@@ -142,8 +154,8 @@
                     </lvc:CartesianChart>
                 </Grid>
             </Border>
-            <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="5 5 20 20"
-                    CornerRadius="10">
+            <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="5 5 5 20"
+                    CornerRadius="10" Background="White">
                 <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -156,7 +168,7 @@
                             Height="450" Width="450"/>
                 </Grid>
             </Border>
-            <DataGrid Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Margin="0 10 20 20"
+            <DataGrid Grid.Row="2" Grid.Column="4" Grid.RowSpan="2" Margin="0 10 20 20"
                       ItemsSource="{Binding Lands}"
                       CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" 
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
@@ -170,7 +182,7 @@
                                         Binding="{Binding FilePath}"/>                    
                 </DataGrid.Columns>
             </DataGrid>
-            <Border Grid.Row="4" Grid.ColumnSpan="3" CornerRadius="0 0 10 10" Background="#7fc8f8"/>
+            <Border Grid.Row="4" Grid.ColumnSpan="5" CornerRadius="0 0 10 10" Background="#7fc8f8"/>
         </Grid>
     </Border>
 </Window>

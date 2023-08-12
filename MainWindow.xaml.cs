@@ -20,6 +20,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using System.Drawing.Drawing2D;
 using LiveChartsCore.SkiaSharpView.Painting.Effects;
+using LiveChartsCore.Drawing;
 
 namespace Production_Analysis
 {
@@ -32,11 +33,11 @@ namespace Production_Analysis
         private static readonly SolidColorPaint productivityChartColor = new SolidColorPaint(new SKColor(0, 48, 73)) { StrokeThickness = 3 };
 
         private static readonly LinearGradientPaint energyConsumptionChartColor = new LinearGradientPaint(new[] 
-                                { new SKColor(239, 71, 111), new SKColor(255, 250, 255) }, new SKPoint(0.5f, 0), new SKPoint(0.5f, 1));
+                                { new SKColor(239, 71, 111), new SKColor(255, 255, 255) }, new SKPoint(0.5f, 0), new SKPoint(0.5f, 1));
         private static readonly SolidColorPaint energyConsumptionStrokeColor = new SolidColorPaint(new SKColor(239, 71, 111)) { StrokeThickness = 2 };
 
         private static readonly LinearGradientPaint emissionsChartColor = new LinearGradientPaint(new[] 
-                                { new SKColor(6, 214, 160), new SKColor(255, 250, 255) }, new SKPoint(0.5f, 0), new SKPoint(0.5f, 1));
+                                { new SKColor(6, 214, 160), new SKColor(255, 255, 255) }, new SKPoint(0.5f, 0), new SKPoint(0.5f, 1));
         private static readonly SolidColorPaint emissionsStrokeColor = new SolidColorPaint(new SKColor(6, 214, 160)) { StrokeThickness = 2 };
 
         public MainWindow()
@@ -79,6 +80,8 @@ namespace Production_Analysis
                 }
             };
             public HeatLandSeries[] GeoSeries { get; set; }
+            public IEnumerable<ISeries> PieSeries { get; set; }
+
             public ISeries[] Series { get; set; }
                 = new ISeries[]
                 {                
@@ -101,6 +104,7 @@ namespace Production_Analysis
             {
                 new StackedAreaSeries<double>
                 {
+                    DataPadding = new LvcPoint(0, 1),
                     Values = new List<double> { 3, 2, 3, 5, 3, 4, 6 },
                     Stroke = energyConsumptionStrokeColor,
                     Fill = energyConsumptionChartColor,
@@ -112,9 +116,10 @@ namespace Production_Analysis
             {
                 new StackedAreaSeries<double>
                 {
+                    DataPadding = new LvcPoint(0, 1),
                     Values = new List<double> { 6, 2, 5, 3, 5, 4, 2 },
                     Stroke = emissionsStrokeColor,
-                    Fill = emissionsChartColor,
+                    Fill = emissionsChartColor,                    
                     LineSmoothness = 0.2
                 }
             };
@@ -148,7 +153,19 @@ namespace Production_Analysis
                         }, 
                     Lands = lands } 
                 };
-            }
+
+                var data = new double[] { 2, 4, 1, 4, 3 };                
+
+                PieSeries = data.AsLiveChartsPieSeries((value, series) =>
+                {
+                    series.Name = $"Series for value {value}";
+                    series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
+                    series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Outer;
+                    series.DataLabelsFormatter = p => $"{p.PrimaryValue} / {p.StackedValue!.Total} ({p.StackedValue.Share:P2})";
+                });
+            }           
+           
+
         }
     }
 }
