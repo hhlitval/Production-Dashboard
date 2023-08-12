@@ -154,14 +154,15 @@ namespace Production_Analysis
                     Lands = lands } 
                 };
 
-                var data = new double[] { 2, 4, 1, 4, 3 };                
+                var data = new double[] { 2, 3, 1, 4 };                
 
                 PieSeries = data.AsLiveChartsPieSeries((value, series) =>
                 {
-                    series.Name = $"Series for value {value}";
-                    series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
-                    series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Outer;
-                    series.DataLabelsFormatter = p => $"{p.PrimaryValue} / {p.StackedValue!.Total} ({p.StackedValue.Share:P2})";
+                    series.Name = $"Schicht {value}";
+                    series.DataLabelsPaint = new SolidColorPaint(SKColors.White);
+                    series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle;
+                    series.DataLabelsFormatter = point => point.PrimaryValue.ToString("N1") + " %";
+                    series.DataLabelsSize = 15;
                 });
             }           
            
