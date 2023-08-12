@@ -109,14 +109,31 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Energieverbrauch" 
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text="Energieverbrauch" Width="320"
                                Style="{StaticResource viewTitle}"/>
+                        <icon:PackIconMaterial Kind="LightningBolt" 
+                                               Style="{StaticResource sidePanelIcon}"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Bottom"
+                                               Margin="0 0 0 0"/>
+                        
+                    </StackPanel>
                     <lvc:CartesianChart Grid.Row="1" Series="{Binding StackedSeries}" 
                                         AnimationsSpeed="00:00:03"
                                         XAxes="{Binding XAxes}"
                                         YAxes="{Binding YAxes}"/>
-                    <TextBlock Grid.Row="2" Text="Emissionen" 
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <TextBlock Grid.Row="2" Text="Emissionen" Width="320"
                                Style="{StaticResource viewTitle}"/>
+                        <icon:PackIconMaterial Kind="Smoke" 
+                                               Style="{StaticResource sidePanelIcon}"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Bottom"
+                                               Margin="0 0 0 0"/>
+                        
+                    </StackPanel>
+                    
                     <lvc:CartesianChart Grid.Row="3" Series="{Binding StackedSeries2}" 
                                         AnimationsSpeed="00:00:03"
                                         XAxes="{Binding XAxes}"
