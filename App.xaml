@@ -53,7 +53,7 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#2b2d42"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Margin" Value="5 0 0 0"/>
+            <Setter Property="Margin" Value="5 0 5 0"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Width" Value="80"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
