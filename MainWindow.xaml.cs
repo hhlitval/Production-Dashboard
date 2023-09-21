@@ -21,6 +21,7 @@ using SkiaSharp;
 using System.Drawing.Drawing2D;
 using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using LiveChartsCore.Drawing;
+using LiveChartsCore.Kernel;
 
 namespace Production_Analysis
 {
@@ -164,9 +165,7 @@ namespace Production_Analysis
                     series.DataLabelsFormatter = point => point.PrimaryValue.ToString("N1") + " %";
                     series.DataLabelsSize = 15;
                 });
-            }           
-           
-
+            }    
         }
     }
 }
