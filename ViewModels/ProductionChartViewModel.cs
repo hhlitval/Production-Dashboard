@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Production_Analysis.ViewModels
 {
-    class ProductionChartViewModel
+    public class ProductionChartViewModel : BaseViewModel
     {
     }
 }
