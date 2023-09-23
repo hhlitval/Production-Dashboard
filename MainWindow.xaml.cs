@@ -83,23 +83,23 @@ namespace Production_Analysis
             public HeatLandSeries[] GeoSeries { get; set; }
             public IEnumerable<ISeries> PieSeries { get; set; }
 
-            public ISeries[] Series { get; set; }
-                = new ISeries[]
-                {                
-                new ColumnSeries<double>
-                {
-                    Name = "Produktionsmenge",
-                    Values = new double[] { 4, 2, 2, 8, 1, 6, 3 },
-                    Fill = new SolidColorPaint(productionChartColor)
-                },
-                new LineSeries<double>
-                {
-                    Name = "Materialproduktivität",
-                    Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
-                    Stroke = productivityChartColor,   
-                    Fill = null
-                }
-                };
+            //public ISeries[] Series { get; set; }
+            //    = new ISeries[]
+            //    {                
+            //    new ColumnSeries<double>
+            //    {
+            //        Name = "Produktionsmenge",
+            //        Values = new double[] { 4, 2, 2, 8, 1, 6, 3 },
+            //        Fill = new SolidColorPaint(productionChartColor)
+            //    },
+            //    new LineSeries<double>
+            //    {
+            //        Name = "Materialproduktivität",
+            //        Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
+            //        Stroke = productivityChartColor,   
+            //        Fill = null
+            //    }
+            //    };
 
             public List<ISeries> StackedSeries { get; set; } = new()
             {

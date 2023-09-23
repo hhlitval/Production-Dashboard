@@ -8,5 +8,8 @@ namespace Production_Analysis.ViewModels
 {
     public class ProductionInfoCardsViewModel : BaseViewModel
     {
+        public ProductionInfoCardsViewModel()
+        {
+        }
     }
 }
