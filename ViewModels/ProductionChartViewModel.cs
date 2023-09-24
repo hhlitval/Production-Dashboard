@@ -16,6 +16,7 @@ namespace Production_Analysis.ViewModels
         private readonly SolidColorPaint productivityChartColor = new SolidColorPaint(new SKColor(0, 48, 73)) { StrokeThickness = 3 };
         
         public ISeries[] ProductionAndProductivityChart{ get; set; }
+        public Axis[] XAxes { get; set; }
 
         public ProductionChartViewModel()
         {
@@ -36,6 +37,14 @@ namespace Production_Analysis.ViewModels
                         Fill = null
                     }
                 };
+            XAxes = new []
+            {
+                new Axis
+                {
+                    // Use the labels property to define named labels.
+                    Labels = new string[] { "Anne", "Johnny", "Zac", "Rosa" }
+                }
+            };
         } 
     }
 }

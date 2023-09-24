@@ -10,7 +10,7 @@
         mc:Ignorable="d" Height="900" Width="1400" 
         WindowStartupLocation="CenterScreen" 
         Background="Transparent" AllowsTransparency="True"
-        WindowStyle="None" ResizeMode="NoResize" FontFamily="Dubai Medium" >
+        WindowStyle="None" ResizeMode="NoResize" FontFamily="Global User Interface" >
     <Border Style="{StaticResource mainBorder}" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
