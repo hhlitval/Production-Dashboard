@@ -7,155 +7,182 @@
         xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         xmlns:uc="clr-namespace:Production_Analysis.UserControls"
         xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        mc:Ignorable="d" Height="900" Width="1400" 
+        mc:Ignorable="d" Height="800" Width="1200" 
         WindowStartupLocation="CenterScreen" 
         Background="Transparent" AllowsTransparency="True"
         WindowStyle="None" ResizeMode="NoResize" FontFamily="Global User Interface" >
     <Border Style="{StaticResource mainBorder}" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="4*"/>                
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="4*"/>
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Title Bar -->
-            <Border Grid.Row="0" Grid.ColumnSpan="5" CornerRadius="10 10 0 0" Background="#7fc8f8">
-                <!--<Border.Background>
-                    <ImageBrush Stretch="UniformToFill" ImageSource="\Images\proanalysis.png"/>
-                </Border.Background>-->
-                <!--<TextBlock Text="Production Analysis" Margin="20 0 0 0" FontSize="25" FontWeight="Bold"
-                           VerticalAlignment="Center" Foreground="#525174"/>-->
-                
-            </Border>  
-
-            <StackPanel Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" Margin="0 0 10 0" Orientation="Horizontal" VerticalAlignment="Center">
+            <Border Grid.Row="0" Grid.ColumnSpan="5" CornerRadius="10 10 0 0" Background="#7fc8f8"/>
+            <Image Source="\Images\proanalysis.png" HorizontalAlignment="Left" Margin="20 0 0 0"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                        HorizontalAlignment="Right" Margin="0 0 10 0" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="01.01.2022 - 31.12.2022" VerticalAlignment="Center"
+                           Foreground="#31393c" 
+                           FontSize="15"/>
                 <Button Style="{StaticResource topMenuButton}">
-                    <icon:PackIconMaterial Kind="WindowMinimize" Style="{StaticResource topMenuIcon}"/>
+                    <icon:PackIconMaterial Kind="Tune" Foreground="#31393c"/>
                 </Button>
                 <Button Style="{StaticResource topMenuButton}">
-                    <icon:PackIconMaterial Kind="WindowMaximize" Style="{StaticResource topMenuIcon}"/>
+                    <icon:PackIconOcticons Kind="Calendar" Foreground="#31393c"/>
+                </Button>
+                <Button Style="{StaticResource topMenuButton}">
+                    <icon:PackIconBootstrapIcons Kind="FilePdf" Foreground="#31393c"/>
+                </Button>
+                <Button Style="{StaticResource topMenuButton}">
+                    <icon:PackIconUnicons  Kind="Print" Foreground="#31393c"/>
+                </Button>
+                <Button Style="{StaticResource topMenuButton}">
+                    <icon:PackIconMaterial Kind="HelpCircleOutline" Foreground="#31393c"/>
                 </Button>
                 <Button Style="{StaticResource topMenuButton}" Click="CloseButton_Click" >
-                    <icon:PackIconMaterial Kind="Close" Style="{StaticResource topMenuIcon}"/>
+                    <icon:PackIconMaterial Kind="Close" Style="{StaticResource topMenuIcon}"
+                                           Foreground="#31393c"/>
                 </Button>
-            </StackPanel>
-
-            <!-- Production Key Indicators -->
-            <Border Grid.Row="1" Grid.Column="0" Background="#ffffff" CornerRadius="10" 
-                    Margin="20 10 0 5" Padding="10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <uc:InfoCard Grid.Row="0" Title="Gesamtproduktion " Output="1253678 t"/>
-                    <uc:InfoCard Grid.Row="1" Title="Schicht #1" Output="203601 t"/>
-                    <uc:InfoCard Grid.Row="2" Title="Schicht #2" Output="250124 t"/>
-                    <uc:InfoCard Grid.Row="3" Title="Schicht #3" Output="377802 t"/>
-                    <uc:InfoCard Grid.Row="4" Title="Schicht #4" Output="143889 t"/>
-                </Grid>
-            </Border>
+            </StackPanel>           
+            
             
             <!-- Production Chart -->
-            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  Background="Transparent" CornerRadius="0 10 10 0" 
-                    Margin="0 10 20 5" Padding="10">
+            <Border Grid.Row="1" Grid.Column="0" Background="#ffffff" CornerRadius="10" 
+                    Margin="20 10 10 10" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                    <TextBlock Text="Produktion" 
-                               Style="{StaticResource viewTitle}"/>
-                        <Border Background="#ffffff" CornerRadius="10" Margin="300,0,0,0">
-                            <Grid HorizontalAlignment="Right">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <ToggleButton Grid.Column="0" Content="2023" Style="{StaticResource toggleButton}"/>
-                                <ToggleButton Grid.Column="1" Content="2022" Style="{StaticResource toggleButton}"/>
-                                <ToggleButton Grid.Column="2" Content="2021" Style="{StaticResource toggleButton}"/>
-                                <ToggleButton Grid.Column="3" Content="Gesamt" Style="{StaticResource toggleButton}"/>
-                            </Grid>
-                        </Border>
+                    <TextBlock Text="Produktionsvolumen" 
+                               Style="{StaticResource viewTitle}"/>                       
                     </Grid>
-                    <lvc:CartesianChart Grid.Row="1" Series="{Binding Series}" 
-                                        ZoomMode="X" LegendPosition="Bottom"/>                    
+                    <lvc:CartesianChart Grid.Row="1" Series="{Binding Production}" 
+                                        YAxes="{Binding YProduction}"
+                                        XAxes="{Binding XProduction}"
+                                        ZoomMode="X" LegendPosition="Hidden"
+                                        AnimationsSpeed="00:00:02.000"/>                    
                 </Grid>
             </Border>
 
-            <Border Grid.Row="1" Grid.Column="4" Background="#ffffff" CornerRadius="10" 
-                    Margin="0 10 20 5" Padding="10">
-                <lvc:PieChart Series="{Binding PieSeries}" LegendPosition="Bottom"
-                              AnimationsSpeed="00:00:02.000"/>
-            </Border>
-
-            <!-- Energy consumption / Emissions -->
-            <Border Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Background="Transparent" CornerRadius="10" 
-                    Margin="20 10 5 20">
+            <!-- Production Losses Column Chart -->
+            <Border Grid.Row="1" Grid.Column="1" Background="#ffffff" CornerRadius="10" 
+                    Margin="10 10 10 10" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
                         <RowDefinition/>
-                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <TextBlock Text="Produktionsausfälle" Style="{StaticResource viewTitle}"/>
+                    </Grid>
+                    <lvc:CartesianChart Grid.Row="1" Series="{Binding DefectProduction}" 
+                                        XAxes="{Binding XDefectProduction}"
+                                        YAxes="{Binding YDefectProduction}"
+                                        LegendPosition="Hidden"
+                              AnimationsSpeed="00:00:02.000"/>
+                </Grid>
+            </Border>
+            
+            <!-- Productivity Chart -->
+            <Border Grid.Row="1" Grid.Column="2" Background="#ffffff" CornerRadius="10" 
+                    Margin="10 10 20 10" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    
-                        <TextBlock Grid.Row="0" Text="Energieverbrauch" 
+                    <Grid Grid.Row="0">
+                        <TextBlock Text="Gesamtanlageneffektivität " 
                                Style="{StaticResource viewTitle}"/>
-                        <icon:PackIconMaterial Grid.Row="0" Grid.RowSpan="2"
-                                               Kind="LightningBolt" 
-                                               Style="{StaticResource sidePanelIcon}"
-                                               HorizontalAlignment="Right"
-                                               VerticalAlignment="Center"
-                                               Margin="0 0 5 0"/>
-                        
-                    
-                    <lvc:CartesianChart Grid.Row="2" Series="{Binding StackedSeries}" 
-                                        AnimationsSpeed="00:00:03"
-                                        XAxes="{Binding XAxes}"
-                                        YAxes="{Binding YAxes}"/>
-                    
-                        <TextBlock Grid.Row="3" Text="Emissionen" 
-                               Style="{StaticResource viewTitle}"/>
-                    <icon:PackIconMaterial Grid.Row="3" Grid.RowSpan="2"
-                                               Kind="Smog" 
-                                               Style="{StaticResource sidePanelIcon}"
-                                               HorizontalAlignment="Right"
-                                               VerticalAlignment="Center"
-                                               Margin="0 0 5 0"/>
-                        
-                   
-
-                    <lvc:CartesianChart Grid.Row="5" Series="{Binding StackedSeries2}" 
-                                        AnimationsSpeed="00:00:03"
-                                        XAxes="{Binding XAxes}"
-                                        YAxes="{Binding YAxes}">                       
-
-                    </lvc:CartesianChart>
+                    </Grid>
+                    <lvc:PieChart Grid.Row="1" Series="{Binding EquipmentEfficiency}" 
+                                        LegendPosition="Hidden" Total="100" 
+                                        AnimationsSpeed="00:00:02.000"/>
                 </Grid>
             </Border>
-            <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="5 5 5 20"
-                    CornerRadius="10" Background="White">
+
+            <!-- Info Cards -->            
+                <Grid Grid.Row="2" Grid.ColumnSpan="3" Margin="20 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                <uc:InfoCard Grid.Column="0" Margin="0 0 5 0" Value="166 749,035 t" 
+                             Subtitle="Gesamtproduktion"/>
+                <icon:PackIconForkAwesome Kind="AreaChart" Foreground="AliceBlue" 
+                                          Margin="20 23 10 10"
+                                          Width="30" Height="30"/>
+                <icon:PackIconEvaIcons Kind="ArrowUp" Foreground="#69d1c5" 
+                          Margin="0 0 20 0" HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                          Width="25" Height="25"/>
+                <uc:InfoCard Grid.Column="1" Margin="5 0 5 0" Value="3%" 
+                             Subtitle="Produktionsausschuss"/>
+                <icon:PackIconMaterialDesign Grid.Column="1" Kind="BrokenImage" Foreground="AliceBlue" 
+                          Margin="27 26 10 10"
+                          Width="25" Height="25"/>
+                <icon:PackIconEvaIcons Grid.Column="1" Kind="ArrowUp" Foreground="#d8315b"
+                                       Margin="0 0 20 0" HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Width="25" Height="25"/>
+                <uc:InfoCard Grid.Column="2" Margin="5 0 5 0" Value="597,07 kWh/t" 
+                             Subtitle="Energieverbrauch"/>
+                <icon:PackIconZondicons Grid.Column="2" Kind="Bolt" Foreground="AliceBlue"
+                                             Margin="27 26 10 10"
+                                             Width="25" Height="25"/>
+                <icon:PackIconEvaIcons Grid.Column="2" Kind="ArrowDown" Foreground="#69d1c5"
+                       Margin="0 0 20 0" HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Width="25" Height="25"/>
+                <uc:InfoCard Grid.Column="3" Margin="5 0 0 0" Value="2,91 kg/t" 
+                             Subtitle="Emissionen (CO)"/>
+                <icon:PackIconVaadinIcons Grid.Column="3" Kind="Factory" Foreground="AliceBlue"
+                             Margin="27 26 10 10"
+                             Width="25" Height="25"/>
+                <icon:PackIconEvaIcons Grid.Column="3" Kind="ArrowUp" Foreground="#d8315b"
+                       Margin="0 0 20 0" HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Width="25" Height="25"/>
+            </Grid>
+
+
+            <!-- Production Costs -->
+            <Border Grid.Row="3" Grid.Column="2" Background="#ffffff" CornerRadius="10" 
+                    Margin="5 10 20 10" Padding="10">                
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                        <TextBlock Text="Produktionskosten" 
+                   Style="{StaticResource viewTitle}"/>
+                        </Grid>
+                        <lvc:CartesianChart Grid.Row="1" Series="{Binding ProductionCosts}"
+                                            XAxes="{Binding XProductionCosts}"
+                                            YAxes="{Binding YProductionCosts}"
+                            ZoomMode="X" LegendPosition="Hidden"
+                            AnimationsSpeed="00:00:02.000"/>
+                    </Grid>               
+            </Border>
+            
+            <!-- Shipping Infographics -->
+            <Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="20 10 5 10"
+                    CornerRadius="10" Background="White" Padding="10">
                 <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -165,24 +192,25 @@
                     <TextBlock Grid.Row="0" Text="Versand Infografik" 
                                Style="{StaticResource viewTitle}"/>
                     <lvc:GeoMap Grid.Row="2" Series="{Binding GeoSeries}" MapProjection="Mercator" ToolTip="{Binding}"
-                            Height="450" Width="450"/>
+                            Width="400" Height="350" HorizontalAlignment="Left"/>
                 </Grid>
             </Border>
-            <DataGrid Grid.Row="2" Grid.Column="4" Grid.RowSpan="2" Margin="0 10 20 20"
+            
+            <DataGrid Grid.Row="3" Grid.Column="1" Margin="20 20 20 20" Padding="10"
                       ItemsSource="{Binding Lands}"
                       CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" 
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                       RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Land" IsReadOnly="True" CanUserResize="True" Width="3*" 
-                                        Binding="{Binding FileName}"/>
-                    <DataGridTextColumn Header="Versand" IsReadOnly="True" CanUserResize="True" Width="2*"
-                                        Binding="{Binding FileSize}"/>
+                                        Binding="{Binding DestinationLand}"/>
+                    <DataGridTextColumn Header="Versand (t)" IsReadOnly="True" CanUserResize="True" Width="1.8*"
+                                        Binding="{Binding Quantity}"/>
                     <DataGridTextColumn Header="%" IsReadOnly="True" CanUserResize="True" Width="*"
-                                        Binding="{Binding FilePath}"/>                    
+                                        Binding="{Binding Percentage}"/>                    
                 </DataGrid.Columns>
             </DataGrid>
-            <Border Grid.Row="4" Grid.ColumnSpan="5" CornerRadius="0 0 10 10" Background="#7fc8f8"/>
+            <Border Grid.Row="5" Grid.ColumnSpan="5" CornerRadius="0 0 10 10" Background="#7fc8f8"/>
         </Grid>
     </Border>
 </Window>
