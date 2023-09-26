@@ -12,7 +12,7 @@
             <Setter Property="Foreground" Value="#ffffff"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Width" Value="30"/>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Margin" Value="2"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -27,7 +27,7 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Tag" Value="Visible" />
-                    <Setter Property="Background" Value="#484b6b"/>
+                    <Setter Property="Background" Value="#3aa1f0"/>
                     <Setter Property="Foreground" Value="#ffffff"/>
                 </Trigger>
             </Style.Triggers>
@@ -83,8 +83,8 @@
         </Style>
         
         <Style x:Key="mainBorder" TargetType="Border">
-            <Setter Property="Background" Value="#f9f9f9"/>
-            <Setter Property="CornerRadius" Value="20"/>            
+            <Setter Property="Background" Value="#f7f7ff"/>
+            <Setter Property="CornerRadius" Value="18"/>            
             <Setter Property="BorderThickness" Value="15"/>
             <Setter Property="BorderBrush">
                 <Setter.Value>
@@ -101,11 +101,20 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
-        <Style x:Key="titleInfoCard" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#f9f9f9"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Margin" Value="15 10 0 0"/>
+        <Style x:Key="valueInfoCard" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#31393c"/>
+            <Setter Property="FontFamily" Value="Global User Interface"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="subtitleInfoCard" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#637278"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
@@ -202,6 +211,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#2d3142"/>
@@ -270,6 +280,7 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+        
         <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -297,10 +308,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#69717d"/>
+            <Setter Property="Foreground" Value="#637278"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Margin" Value="15 0 15 10"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -316,8 +330,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
-            <Setter Property="Background" Value="#f2fcff"/>
+            <Setter Property="Background" Value="#ffffff"/>
             <Setter Property="Margin" Value="0 4 0 0"/>
             <Setter Property="SnapsToDevicePixels" Value="true"/>
             <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
@@ -352,12 +367,12 @@
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#0b4f6c"/>
+                    <Setter Property="Background" Value="#5aa9e6"/>
                     <Setter Property="Foreground" Value="#ffffff"/>
                 </Trigger>
 
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#20bf55"/>
+                    <Setter Property="Background" Value="#5aa9e6"/>
                     <Setter Property="Foreground" Value="#ffffff"/>
                 </Trigger>
             </Style.Triggers>

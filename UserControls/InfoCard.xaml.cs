@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,22 +26,23 @@ namespace Production_Analysis.UserControls
             InitializeComponent();
         }
 
-        public string Title
+        public string Value
         {
-            get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
+            get { return (string)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
         }
 
-        public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(InfoCard));
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register("Value", typeof(string), typeof(InfoCard));
 
-        public string Output
+        public string Subtitle
         {
-            get { return (string)GetValue(OutputProperty); }
-            set { SetValue(OutputProperty, value); }
+            get { return (string)GetValue(SubtitleProperty); }
+            set { SetValue(SubtitleProperty, value); }
         }
 
-        public static readonly DependencyProperty OutputProperty =
-            DependencyProperty.Register("Output", typeof(string), typeof(InfoCard));
+        public static readonly DependencyProperty SubtitleProperty =
+            DependencyProperty.Register("Subtitle", typeof(string), typeof(InfoCard));
+        
     }
 }
