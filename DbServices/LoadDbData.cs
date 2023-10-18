@@ -11,13 +11,6 @@ namespace Production_Analysis.DbServices
 {
     public class LoadDbData : DbConnection
     {
-        public ObservableCollection<Production> WeightStatistics { get; set; }
-
-        public LoadDbData(DateTime start, DateTime end)
-        {
-            WeightStatistics = LoadData(start, end);
-        }
-
         private ObservableCollection<Production> LoadData(DateTime startDate, DateTime endDate)
         {
             var dbWeightList = new ObservableCollection<Production>();

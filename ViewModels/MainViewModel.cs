@@ -8,20 +8,20 @@ namespace Production_Analysis.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+
         public ProductionInfoCardsViewModel ProductionInfoCardsViewModel { get; }
         public ProductionChartViewModel ProductionChartViewModel { get; }
         public PieChartViewModel PieChartViewModel { get; }
         public EnergyEmissionsViewModel EnergyEmissionsViewModel { get; }
         public ShippingMapViewModel ShippingMapViewModel { get; }
 
-        public MainViewModel(ProductionInfoCardsViewModel productionInfoCardsViewModel, ProductionChartViewModel productionChartViewModel, 
-            PieChartViewModel pieChartViewModel, EnergyEmissionsViewModel energyEmissionsViewModel, ShippingMapViewModel shippingMapViewModel)
+        public MainViewModel(DateTime start, DateTime end)
         {
-            ProductionInfoCardsViewModel = productionInfoCardsViewModel;
-            ProductionChartViewModel = productionChartViewModel;
-            PieChartViewModel = pieChartViewModel;
-            EnergyEmissionsViewModel = energyEmissionsViewModel;
-            ShippingMapViewModel = shippingMapViewModel;
+            ProductionInfoCardsViewModel = new ProductionInfoCardsViewModel();
+            ProductionChartViewModel = new ProductionChartViewModel();
+            PieChartViewModel = new PieChartViewModel();
+            EnergyEmissionsViewModel = new EnergyEmissionsViewModel();
+            ShippingMapViewModel = new ShippingMapViewModel();
         }
 
     }

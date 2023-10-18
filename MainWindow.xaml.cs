@@ -22,6 +22,7 @@ using LiveChartsCore.Defaults;
 using System.Collections.ObjectModel;
 using Production_Analysis.Models;
 using System.Windows.Markup;
+using Production_Analysis.ViewModels;
 
 namespace Production_Analysis
 {
@@ -47,6 +48,7 @@ namespace Production_Analysis
             InitializeComponent();            
             
             DataContext = new ViewModel();
+            //DataContext = new MainViewModel(new DateTime(2016), new DateTime(2017));
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
