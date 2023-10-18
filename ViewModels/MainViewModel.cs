@@ -18,7 +18,7 @@ namespace Production_Analysis.ViewModels
         public MainViewModel(DateTime start, DateTime end)
         {
             ProductionInfoCardsViewModel = new ProductionInfoCardsViewModel();
-            ProductionChartViewModel = new ProductionChartViewModel();
+            ProductionChartViewModel = new ProductionChartViewModel(start, end);
             PieChartViewModel = new PieChartViewModel();
             EnergyEmissionsViewModel = new EnergyEmissionsViewModel();
             ShippingMapViewModel = new ShippingMapViewModel();

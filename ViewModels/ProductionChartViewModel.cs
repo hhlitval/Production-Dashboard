@@ -7,44 +7,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SkiaSharp;
+using Production_Analysis.Models;
+using Production_Analysis.DbServices;
+using System.Windows.Media.Media3D;
 
 namespace Production_Analysis.ViewModels
 {
     public class ProductionChartViewModel : BaseViewModel
-    {
-        private readonly SKColor productionChartColor = new SKColor(216, 49, 91);
-        private readonly SolidColorPaint productivityChartColor = new SolidColorPaint(new SKColor(0, 48, 73)) { StrokeThickness = 3 };
-        
+    {        
         public ISeries[] ProductionAndProductivityChart{ get; set; }
+        public string[]? Date { get; set; }
         public Axis[] XAxes { get; set; }
+        public Axis YAxes { get; set; }
 
-        public ProductionChartViewModel()
+        public ProductionChartViewModel(DateTime startDate, DateTime endDate)
         {
-             ProductionAndProductivityChart
-                = new ISeries[]
+            IEnumerable<Production> output = LoadDbData.LoadData(startDate, endDate);
+
+            ProductionAndProductivityChart = new ISeries[]
+            {
+                new LineSeries<decimal>
                 {
-                    new ColumnSeries<decimal>
-                    {
-                        Name = "Produktionsmenge",
-                        Values = new decimal[] { 4, 2, 2, 8, 1, 6, 3 },
-                        Fill = new SolidColorPaint(productionChartColor)
-                    },
-                    new LineSeries<decimal>
-                    {
-                        Name = "Materialproduktivität",
-                        Values = new decimal[] { 2, 1, 3, 5, 3, 4, 6 },
-                        Stroke = productivityChartColor,
-                        Fill = null
-                    }
-                };
-            XAxes = new []
+                    Values = output.Select(w => w.Output),
+                    Fill = null,
+                    Stroke = new SolidColorPaint(new SKColor(90, 169, 230)){StrokeThickness = 3},
+                    GeometrySize = 0,
+                    LineSmoothness = 1
+                }
+            };
+            
+            XAxes = new[]
             {
                 new Axis
                 {
-                    // Use the labels property to define named labels.
-                    Labels = new string[] { "Anne", "Johnny", "Zac", "Rosa" }
+                    Labels = output.Select(c => (c.MonthYear).ToString("dd.MM.yy")).ToArray()
                 }
             };
+
+            YAxes = new Axis
+                {
+                    SeparatorsPaint = null
+                };
         } 
     }
 }

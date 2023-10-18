@@ -14,7 +14,7 @@ namespace Production_Analysis.DbServices
             connectionString = "Server=(local); DataBase=ProductionAnalysis; Integrated Security=true";
         }
 
-        protected SqlConnection GetConnection()
+        public SqlConnection GetConnection()
         {
             return new SqlConnection(connectionString);
         }
