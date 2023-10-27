@@ -69,9 +69,9 @@
                                Style="{StaticResource viewTitle}"/>                       
                     </Grid>
                     <lvc:CartesianChart Grid.Row="1" 
-                                        Series="{Binding ProductionAndProductivityChart}" 
-                                        YAxes="{Binding YAxes}"
-                                        XAxes="{Binding XAxes}"
+                                        Series="{Binding Production}" 
+                                        YAxes="{Binding YProduction}"
+                                        XAxes="{Binding XProduction}"
                                         ZoomMode="X" LegendPosition="Hidden"
                                         AnimationsSpeed="00:00:02.000"/>                    
                 </Grid>
