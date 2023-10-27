@@ -69,6 +69,7 @@
                                Style="{StaticResource viewTitle}"/>                       
                     </Grid>
                     <lvc:CartesianChart Grid.Row="1" 
+                                        DataContext="{Binding ProductionVolumeViewModel}"
                                         Series="{Binding ProductionChart}" 
                                         YAxes="{Binding YProductionChart}"
                                         XAxes="{Binding XProductionChart}"
@@ -88,9 +89,11 @@
                     <Grid Grid.Row="0">
                         <TextBlock Text="Produktionsausfälle" Style="{StaticResource viewTitle}"/>
                     </Grid>
-                    <lvc:CartesianChart Grid.Row="1" Series="{Binding DefectProduction}" 
-                                        XAxes="{Binding XDefectProduction}"
-                                        YAxes="{Binding YDefectProduction}"
+                    <lvc:CartesianChart Grid.Row="1" 
+                                        DataContext="{Binding ProductionDowntimeViewModel}"
+                                        Series="{Binding ProductionDowntime}" 
+                                        XAxes="{Binding XProductionDowntime}"
+                                        YAxes="{Binding YProductionDowntime}"
                                         LegendPosition="Hidden"
                               AnimationsSpeed="00:00:02.000"/>
                 </Grid>
@@ -108,9 +111,11 @@
                         <TextBlock Text="Gesamtanlageneffektivität " 
                                Style="{StaticResource viewTitle}"/>
                     </Grid>
-                    <lvc:PieChart Grid.Row="1" Series="{Binding EquipmentEfficiency}" 
-                                        LegendPosition="Hidden" Total="100" 
-                                        AnimationsSpeed="00:00:02.000"/>
+                    <lvc:PieChart Grid.Row="1" 
+                                  DataContext="{Binding EquipmentEffectivenessViewModel}"
+                                  Series="{Binding EquipmentEfficiency}" 
+                                  LegendPosition="Hidden" Total="100" 
+                                  AnimationsSpeed="00:00:02.000"/>
                 </Grid>
             </Border>
 
@@ -173,11 +178,13 @@
                         <TextBlock Text="Produktionskosten" 
                    Style="{StaticResource viewTitle}"/>
                         </Grid>
-                        <lvc:CartesianChart Grid.Row="1" Series="{Binding ProductionCosts}"
+                        <lvc:CartesianChart Grid.Row="1" 
+                                            DataContext="{Binding ProductionCostsViewModel}"
+                                            Series="{Binding ProductionCosts}"
                                             XAxes="{Binding XProductionCosts}"
                                             YAxes="{Binding YProductionCosts}"
-                            ZoomMode="X" LegendPosition="Hidden"
-                            AnimationsSpeed="00:00:02.000"/>
+                                            LegendPosition="Hidden"
+                                            AnimationsSpeed="00:00:02.000"/>
                     </Grid>               
             </Border>
             
@@ -192,12 +199,21 @@
                     
                     <TextBlock Grid.Row="0" Text="Versand Infografik" 
                                Style="{StaticResource viewTitle}"/>
-                    <lvc:GeoMap Grid.Row="2" Series="{Binding GeoSeries}" MapProjection="Mercator" ToolTip="{Binding}"
-                            Width="400" Height="350" HorizontalAlignment="Left"/>
+                    <lvc:GeoMap Grid.Row="2" 
+                                DataContext="{Binding ShippingMapViewModel}"
+                                Series="{Binding GeoSeries}" 
+                                MapProjection="Mercator" 
+                                ToolTip="{Binding}"
+                                Width="400" 
+                                Height="350" 
+                                HorizontalAlignment="Left"/>
                 </Grid>
             </Border>
             
-            <DataGrid Grid.Row="3" Grid.Column="1" Margin="20 20 20 20" Padding="10"
+            <DataGrid Grid.Row="3" Grid.Column="1" 
+                      Margin="20 20 20 20" 
+                      Padding="10"
+                      DataContext="{Binding ShippingMapViewModel}"
                       ItemsSource="{Binding Lands}"
                       CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" 
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 

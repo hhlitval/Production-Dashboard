@@ -13,7 +13,7 @@ namespace Production_Analysis
         {
             InitializeComponent();
 
-            DataContext = new ProductionVolumeViewModel();
+            DataContext = new MainViewModel();
             //DataContext = new ProductionChartViewModel(new DateTime(2018, 01, 01), new DateTime(2018, 03, 08));
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

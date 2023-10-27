@@ -15,6 +15,7 @@ namespace Production_Analysis.ViewModels
     public class ShippingMapViewModel : BaseViewModel
     {
         public HeatLandSeries[] GeoSeries { get; set; }
+        public List<Shipping>? Lands { get; set; }
         public ShippingMapViewModel()
         {
             var lands = new HeatLand[]
@@ -43,9 +44,7 @@ namespace Production_Analysis.ViewModels
                         },
                     Lands = lands }
                 };
-        }
-
-        public List<Shipping>? Lands { get; set; } = new List<Shipping>()
+            Lands = new List<Shipping>()
             {
                 new Shipping { DestinationLand = "USA", Quantity = 12864, Percentage = 14.3M},
                 new Shipping { DestinationLand = "China", Quantity = 10136, Percentage = 11.3M},
@@ -54,7 +53,6 @@ namespace Production_Analysis.ViewModels
                 new Shipping { DestinationLand = "Deutschland", Quantity = 6954, Percentage = 7.7M},
                 new Shipping { DestinationLand = "Indien", Quantity = 6233, Percentage = 6.9M}
             };
-
+        }
     }
 }
-
