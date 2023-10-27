@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Production_Analysis.Views
 {
     /// <summary>
-    /// Interaction logic for ProductionIndicators.xaml
+    /// Interaction logic for InfoCardsView.xaml
     /// </summary>
-    public partial class ProductionIndicators : UserControl
+    public partial class InfoCardsView : UserControl
     {
-        public ProductionIndicators()
+        public InfoCardsView()
         {
             InitializeComponent();
         }

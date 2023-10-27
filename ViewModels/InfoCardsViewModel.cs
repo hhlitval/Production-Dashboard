@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Production_Analysis.ViewModels
 {
-    public class ProductionInfoCardsViewModel : BaseViewModel
+    public class InfoCardsViewModel : BaseViewModel
     {
-        public ProductionInfoCardsViewModel()
-        {
-        }
     }
 }
