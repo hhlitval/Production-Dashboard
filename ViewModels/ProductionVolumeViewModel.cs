@@ -13,38 +13,41 @@ using System.Windows.Media.Media3D;
 
 namespace Production_Analysis.ViewModels
 {
-    public class ProductionChartViewModel : BaseViewModel
+    public class ProductionVolumeViewModel : BaseViewModel
     {        
-        public ISeries[] ProductionAndProductivityChart{ get; set; }
+        public ISeries[] ProductionChart{ get; set; }
         public string[]? Date { get; set; }
-        public Axis[] XAxes { get; set; }
-        public Axis YAxes { get; set; }
+        public Axis[] XProductionChart { get; set; }
+        public Axis YProductionChart { get; set; }
 
-        public ProductionChartViewModel(DateTime startDate, DateTime endDate)
+        public ProductionVolumeViewModel()
         {
-            IEnumerable<Production> output = LoadDbData.LoadData(startDate, endDate);
+            //IEnumerable<Production> output = LoadDbData.LoadData(startDate, endDate);
 
-            ProductionAndProductivityChart = new ISeries[]
+            ProductionChart = new ISeries[]
             {
                 new LineSeries<decimal>
                 {
-                    Values = output.Select(w => w.Output),
+                    Values = new decimal[]{166,180,123,158,90,124,146,162,150,169,166,144},
+                    //Values = output.Select(w => w.Output),
                     Fill = null,
                     Stroke = new SolidColorPaint(new SKColor(90, 169, 230)){StrokeThickness = 3},
                     GeometrySize = 0,
                     LineSmoothness = 1
                 }
             };
-            
-            XAxes = new[]
+
+            XProductionChart = new[]
             {
                 new Axis
                 {
-                    Labels = output.Select(c => (c.MonthYear).ToString("dd.MM.yy")).ToArray()
+                    Labels = new string[]{"Jan 22", "Feb 22", "Mär 22", "Apr 22", "Mai 22", "Jun 22", "Jul 22",
+                    "Aug 22", "Sep 22", "Okt 22", "Nov 22", "Dez 22"}
+                    //Labels = output.Select(c => (c.MonthYear).ToString("dd.MM.yy")).ToArray()
                 }
             };
 
-            YAxes = new Axis
+            YProductionChart = new Axis
                 {
                     SeparatorsPaint = null
                 };
