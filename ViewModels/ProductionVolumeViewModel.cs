@@ -22,14 +22,13 @@ namespace Production_Analysis.ViewModels
 
         public ProductionVolumeViewModel()
         {
-            //IEnumerable<Production> output = LoadDbData.LoadData(startDate, endDate);
+            IEnumerable<Production> output = LoadDbData.ProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
 
             ProductionChart = new ISeries[]
             {
                 new LineSeries<decimal>
                 {
-                    Values = new decimal[]{166,180,123,158,90,124,146,162,150,169,166,144},
-                    //Values = output.Select(w => w.Output),
+                    Values = output.Select(w => w.Output),
                     Fill = null,
                     Stroke = new SolidColorPaint(new SKColor(90, 169, 230)){StrokeThickness = 3},
                     GeometrySize = 0,
@@ -41,9 +40,7 @@ namespace Production_Analysis.ViewModels
             {
                 new Axis
                 {
-                    Labels = new string[]{"Jan 22", "Feb 22", "Mär 22", "Apr 22", "Mai 22", "Jun 22", "Jul 22",
-                    "Aug 22", "Sep 22", "Okt 22", "Nov 22", "Dez 22"}
-                    //Labels = output.Select(c => (c.MonthYear).ToString("dd.MM.yy")).ToArray()
+                    Labels = output.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray()
                 }
             };
 
