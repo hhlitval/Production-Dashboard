@@ -72,7 +72,7 @@
                                         DataContext="{Binding ProductionVolumeViewModel}"
                                         Series="{Binding ProductionChart}" 
                                         YAxes="{Binding YProductionChart}"
-                                        XAxes="{Binding XProductionChart}"
+                                        XAxes="{Binding XProductionChart}"                                                                                
                                         ZoomMode="X" LegendPosition="Hidden"
                                         AnimationsSpeed="00:00:02.000"/>                    
                 </Grid>
