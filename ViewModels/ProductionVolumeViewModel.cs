@@ -16,13 +16,12 @@ namespace Production_Analysis.ViewModels
     public class ProductionVolumeViewModel : BaseViewModel
     {        
         public ISeries[] ProductionChart{ get; set; }
-        public string[]? Date { get; set; }
-        public Axis[] XProductionChart { get; set; }
-        public Axis[] YProductionChart { get; set; }
+        public Axis[] XAxis { get; set; }
+        public Axis[] YAxis { get; set; }
 
         public ProductionVolumeViewModel()
         {
-            IEnumerable<Production> output = LoadDbData.ProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
+            IEnumerable<Production> output = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
 
             ProductionChart = new ISeries[]
             {
@@ -37,22 +36,25 @@ namespace Production_Analysis.ViewModels
                 }
             };
 
-            XProductionChart = new[]
+            XAxis = new[]
             {
                 new Axis
                 {
-                    Labels = output.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray()
+                    Labels = output.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray(),
+                    TextSize = 14
                 }
             };
 
-            YProductionChart = new []
+            YAxis = new []
                 {
                 new Axis
                 {
+                    Labeler = (value) => value.ToString("0 t"),
                     MinLimit = 0,
                     MaxLimit = 110000,
                     MinStep = 5000,
-                    SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 242))
+                    SeparatorsPaint = new SolidColorPaint(new SKColor(230, 230, 247)),
+                    TextSize = 14
                 }
             };
         } 

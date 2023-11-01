@@ -70,9 +70,9 @@
                     </Grid>
                     <lvc:CartesianChart Grid.Row="1" 
                                         DataContext="{Binding ProductionVolumeViewModel}"
-                                        Series="{Binding ProductionChart}" 
-                                        YAxes="{Binding YProductionChart}"
-                                        XAxes="{Binding XProductionChart}"                                                                                
+                                        Series="{Binding ProductionChart}"                                         
+                                        XAxes="{Binding XAxis}" 
+                                        YAxes="{Binding YAxis}"
                                         ZoomMode="X" LegendPosition="Hidden"
                                         AnimationsSpeed="00:00:02.000"/>                    
                 </Grid>
@@ -92,10 +92,10 @@
                     <lvc:CartesianChart Grid.Row="1" 
                                         DataContext="{Binding ProductionDowntimeViewModel}"
                                         Series="{Binding ProductionDowntime}" 
-                                        XAxes="{Binding XProductionDowntime}"
-                                        YAxes="{Binding YProductionDowntime}"
+                                        XAxes="{Binding XAxis}"
+                                        YAxes="{Binding YAxis}"
                                         LegendPosition="Hidden"
-                              AnimationsSpeed="00:00:02.000"/>
+                                        AnimationsSpeed="00:00:02.000"/>
                 </Grid>
             </Border>
             

@@ -7,12 +7,13 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Production_Analysis.DbServices
 {
-    public static class LoadDbData 
+    public class LoadDbData 
     {
-        public static ObservableCollection<Production> ProductionVolume(DateTime startDate, DateTime endDate)
+        public static ObservableCollection<Production> GetProductionVolume(DateTime startDate, DateTime endDate)
         {
             var productionOutput = new ObservableCollection<Production>();
 
@@ -45,6 +46,41 @@ namespace Production_Analysis.DbServices
                     reader.Close();
 
                     return productionOutput;
+                }
+            }
+        }
+
+        public static ObservableCollection<ProductionDowntime> GetProductionDowntime(DateTime startDate, DateTime endDate)
+        {
+            var productionDowntime = new ObservableCollection<ProductionDowntime>();
+
+            using (var connection = new DbConnection().GetConnection())
+            {
+                connection.Open();
+                using (var command = new SqlCommand())
+                {
+                    SqlDataReader reader;
+                    command.Connection = connection;
+
+                    command.CommandText = @"SELECT ProdDate, Ausfallzeit
+                                            FROM ProductionOverview
+                                            WHERE ProdDate between @FROMDATE and @TODATE
+                                            ORDER BY ProdDate";
+
+                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
+                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        productionDowntime.Add(new ProductionDowntime()
+                        {
+                            MonthYear = (DateTime)reader["ProdDate"],
+                            Downtime = (decimal)reader["Ausfallzeit"]
+                        });
+                    }
+                    reader.Close();
+
+                    return productionDowntime;
                 }
             }
         }
