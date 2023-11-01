@@ -28,10 +28,9 @@ namespace Production_Analysis.ViewModels
                 new ColumnSeries<decimal>
                 {
                     Values = downtime.Select(w => w.Downtime),
-                    //Values = new ObservableCollection<double> { 20, 50, 40, 20, 40, 30, 50, 20, 50, 40, 30, 10 },
                     Fill = new SolidColorPaint(new SKColor(90, 169, 230)),
                     // Defines the distance between every bars in the series
-                    Padding = 8,
+                    Padding = 7,
                     DataLabelsSize = 2,
 
                     // Defines the max width a bar can have
@@ -46,8 +45,6 @@ namespace Production_Analysis.ViewModels
                 new Axis
                 {
                     Labels = downtime.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray(),
-                    //Labels = new string[]{"Jan 22", "Feb 22", "Mär 22", "Apr 22", "Mai 22", "Jun 22", "Jul 22",
-                    //"Aug 22", "Sep 22", "Okt 22", "Nov 22", "Dez 22"},
                     TextSize = 14
                 }
             };
