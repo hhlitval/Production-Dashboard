@@ -84,5 +84,43 @@ namespace Production_Analysis.DbServices
                 }
             }
         }
+
+        public static ObservableCollection<EquipmentEffectiveness> GetEquipmentEffectiveness(DateTime startDate, DateTime endDate)
+        {
+            var equipmentEffectiveness = new ObservableCollection<EquipmentEffectiveness>();
+
+            using (var connection = new DbConnection().GetConnection())
+            {
+                connection.Open();
+                using (var command = new SqlCommand())
+                {
+                    SqlDataReader reader;
+                    command.Connection = connection;
+
+                    command.CommandText = @"SELECT *
+                                            FROM ProductionOverview
+                                            WHERE ProdDate between @FROMDATE and @TODATE
+                                            ORDER BY ProdDate";
+
+                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
+                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        equipmentEffectiveness.Add(new EquipmentEffectiveness()
+                        {
+                            Volume = (Production)reader["ProductionVolume"],
+                            MonthYear = (DateTime)reader["ProdDate"],
+                            ProductDefect = (decimal)reader["Ausschuss"],
+                            OperatingTime = (decimal)reader["Laufzeit"],
+                            Downtime = (ProductionDowntime)reader["Ausfallzeit"]
+                        });
+                    }
+                    reader.Close();
+
+                    return equipmentEffectiveness;
+                }
+            }
+        }
     }
 }
