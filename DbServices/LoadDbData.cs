@@ -97,10 +97,16 @@ namespace Production_Analysis.DbServices
                     SqlDataReader reader;
                     command.Connection = connection;
 
-                    command.CommandText = @"SELECT *
+                    command.CommandText = @"SELECT 
+                                            SUM(ProductionVolume) as ProductionVolume, 
+		                                    SUM(Ausfallzeit) as Ausfallzeit, 
+		                                    SUM(Ausschuss) as Ausschuss, 
+		                                    SUM(Laufzeit) as Laufzeit, 
+                                            SUM(Betriebszeit) as Betriebszeit, 
+		                                    YEAR(ProdDate) as ProductionYear
                                             FROM ProductionOverview
                                             WHERE ProdDate between @FROMDATE and @TODATE
-                                            ORDER BY ProdDate";
+                                            GROUP BY YEAR(ProdDate)";
 
                     command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
                     command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
@@ -109,11 +115,11 @@ namespace Production_Analysis.DbServices
                     {
                         equipmentEffectiveness.Add(new EquipmentEffectiveness()
                         {
-                            Volume = (Production)reader["ProductionVolume"],
-                            MonthYear = (DateTime)reader["ProdDate"],
-                            ProductDefect = (decimal)reader["Ausschuss"],
-                            OperatingTime = (decimal)reader["Laufzeit"],
-                            Downtime = (ProductionDowntime)reader["Ausfallzeit"]
+                            ProductionTotal = (decimal)reader["ProductionVolume"],
+                            ProductDefectTotal = (decimal)reader["Ausschuss"],
+                            OperatingTimeTotal = (decimal)reader["Laufzeit"],
+                            ScheduledTimeTotal = (int)reader["Betriebszeit"],
+                            DowntimeTotal = (decimal)reader["Ausfallzeit"]
                         });
                     }
                     reader.Close();

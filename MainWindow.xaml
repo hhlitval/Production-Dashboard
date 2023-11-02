@@ -113,7 +113,7 @@
                     </Grid>
                     <lvc:PieChart Grid.Row="1" 
                                   DataContext="{Binding EquipmentEffectivenessViewModel}"
-                                  Series="{Binding EquipmentEfficiency}" 
+                                  Series="{Binding EquipmentEffectiveness}"                                   
                                   LegendPosition="Hidden" Total="100" 
                                   AnimationsSpeed="00:00:02.000"/>
                 </Grid>
