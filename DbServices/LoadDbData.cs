@@ -1,4 +1,5 @@
-﻿using Production_Analysis.Models;
+﻿using LiveChartsCore.Themes;
+using Production_Analysis.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,12 +26,10 @@ namespace Production_Analysis.DbServices
                     SqlDataReader reader;
                     command.Connection = connection;
                     //Get all data from database
-                    command.CommandText = @"SELECT FORMAT(PROD_DATA, 'MMM yyyy') AS month_year, 
-                                            CAST(ROUND(SUM(FL_STAHL_PFANNE),1)AS DECIMAL(6,1)) AS ProductionVolume
-                                            FROM Production
-                                            WHERE PROD_DATA between @FROMDATE and @TODATE
-                                            GROUP BY FORMAT(PROD_DATA, 'MMM yyyy')
-                                            ORDER BY MIN(PROD_DATA)";
+                    command.CommandText = @"SELECT ProdDate, ProductionVolume
+                                            FROM ProductionOverview
+                                            WHERE ProdDate between @FROMDATE and @TODATE
+                                            ORDER BY ProdDate";
 
                     command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
                     command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
@@ -39,7 +38,7 @@ namespace Production_Analysis.DbServices
                     {
                         productionOutput.Add(new Production()
                         {
-                            MonthYear = DateTime.ParseExact((string)reader["month_year"], "MMM yyyy", CultureInfo.InvariantCulture),
+                            MonthYear = (DateTime)reader["ProdDate"],
                             Output = (decimal)reader["ProductionVolume"]
                         });
                     }

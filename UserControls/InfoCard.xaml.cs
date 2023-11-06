@@ -42,7 +42,6 @@ namespace Production_Analysis.UserControls
         }
 
         public static readonly DependencyProperty SubtitleProperty =
-            DependencyProperty.Register("Subtitle", typeof(string), typeof(InfoCard));
-        
+            DependencyProperty.Register("Subtitle", typeof(string), typeof(InfoCard));        
     }
 }
