@@ -12,7 +12,7 @@ namespace Production_Analysis.ViewModels
     public class InfoCardsViewModel : BaseViewModel
     {       
         public decimal ProductionTotal { get; set; }
-        public decimal ProductionDefectsTotal { get; set; }
+        public decimal ProductionDefectsPercent { get; set; }
         public decimal EnergyConsumptionTotal { get; set; }
         public decimal EmissionsTotal { get; set; }
 
@@ -23,10 +23,10 @@ namespace Production_Analysis.ViewModels
 
         public InfoCardsViewModel()
         {
-            //IEnumerable<ProductionKPI> infoCards = LoadDbData.GetKeyProductionIndicators(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
+            IEnumerable<ProductionKPI> infoCards = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
 
-            //TodayWeight = (from v in weight where v.Date == _today select v.Weight).FirstOrDefault();
-            //YesterdayWeight = (from v in weight where v.Date == _yesterday select v.Weight).FirstOrDefault();
+            ProductionTotal = infoCards.Select(p => p.ProductionOutput).Sum();
+            ProductionDefectsPercent = ((infoCards.Select(p => p.ProductionDefect).Sum())*100)/ProductionTotal;
             //dayBeforeYesterdayWeight = (from v in weight where v.Date == _dayBeforeYesterday select v.Weight).FirstOrDefault();
             //IsPositiveToday = (TodayDifference = TodayWeight - YesterdayWeight) >= 0 ? false : true;
             //IsPositiveYesterday = (YesterdayDifference = YesterdayWeight - dayBeforeYesterdayWeight) >= 0 ? false : true;

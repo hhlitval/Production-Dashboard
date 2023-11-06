@@ -21,14 +21,14 @@ namespace Production_Analysis.ViewModels
 
         public ProductionVolumeViewModel()
         {
-            IEnumerable<Production> output = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
+            IEnumerable<ProductionKPI> output = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
 
             ProductionChart = new ISeries[]
             {
                 new LineSeries<decimal>
                 {
-                    Values = output.Select(w => w.Output),
-                    Name = "Production",
+                    Values = output.Select(o => o.ProductionOutput),
+                    Name = "Produktion",
                     Fill = null,
                     Stroke = new SolidColorPaint(new SKColor(90, 169, 230)){StrokeThickness = 3},
                     GeometrySize = 0,
