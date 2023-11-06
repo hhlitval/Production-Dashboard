@@ -26,7 +26,7 @@ namespace Production_Analysis.ViewModels
             IEnumerable<ProductionKPI> infoCards = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
 
             ProductionTotal = infoCards.Select(p => p.ProductionOutput).Sum();
-            ProductionDefectsPercent = ((infoCards.Select(p => p.ProductionDefect).Sum())*100)/ProductionTotal;
+            ProductionDefectsPercent = (infoCards.Select(p => p.ProductionDefect).Sum())/ProductionTotal;
             //dayBeforeYesterdayWeight = (from v in weight where v.Date == _dayBeforeYesterday select v.Weight).FirstOrDefault();
             //IsPositiveToday = (TodayDifference = TodayWeight - YesterdayWeight) >= 0 ? false : true;
             //IsPositiveYesterday = (YesterdayDifference = YesterdayWeight - dayBeforeYesterdayWeight) >= 0 ? false : true;
