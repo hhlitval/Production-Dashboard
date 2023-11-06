@@ -23,7 +23,7 @@ namespace Production_Analysis.ViewModels
         [Obsolete]
         public EquipmentEffectivenessViewModel()
         {
-            IEnumerable<EquipmentEffectiveness> equipmentEffectivenesses = LoadDbData.GetEquipmentEffectiveness(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
+            IEnumerable<ProductionKPI> equipmentEffectivenesses = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
             
             EquipmentEffectiveness = new GaugeBuilder()
                 .WithLabelsSize(30)
@@ -36,20 +36,20 @@ namespace Production_Analysis.ViewModels
                 .BuildSeries();
         }
 
-        private double CalculateOverallEquipmentEffectiveness(IEnumerable<EquipmentEffectiveness> equipmentEffectivenesses)
+        private double CalculateOverallEquipmentEffectiveness(IEnumerable<ProductionKPI> equipmentEffectivenesses)
         {
             Availability = 
-                (equipmentEffectivenesses.Select(a => a.OperatingTimeTotal).FirstOrDefault()) /
-                (equipmentEffectivenesses.Select(a => a.ScheduledTimeTotal).FirstOrDefault());
+                (equipmentEffectivenesses.Select(a => a.OperatingTime).Sum()) /
+                (equipmentEffectivenesses.Select(a => a.ScheduledTime).Sum());
 
             Performance = 
-                (equipmentEffectivenesses.Select(a => a.ProductionTotal).FirstOrDefault()) /
-                (((equipmentEffectivenesses.Select(a => a.OperatingTimeTotal).FirstOrDefault()))*140);
+                (equipmentEffectivenesses.Select(a => a.ProductionOutput).Sum()) /
+                (((equipmentEffectivenesses.Select(a => a.OperatingTime).Sum()))*140);
 
             Quality = 
-                ((equipmentEffectivenesses.Select(a => a.ProductionTotal).FirstOrDefault()) -
-                (equipmentEffectivenesses.Select(a => a.ProductDefectTotal).FirstOrDefault())) /
-                (equipmentEffectivenesses.Select(a => a.ProductionTotal).FirstOrDefault());
+                ((equipmentEffectivenesses.Select(a => a.ProductionOutput).Sum()) -
+                (equipmentEffectivenesses.Select(a => a.ProductionDefect).Sum())) /
+                (equipmentEffectivenesses.Select(a => a.ProductionOutput).Sum());
 
             return (double)(Availability*Performance*Quality)*100;
         }

@@ -127,7 +127,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                <uc:InfoCard Grid.Column="0" Margin="0 0 5 0" Value="166 749,035 t" 
+                <uc:InfoCard DataContext="{Binding InfoCardsViewModel}"
+                             Grid.Column="0" Margin="0 0 5 0" 
+                             Value="{Binding ProductionTotal, StringFormat={}{0:F1} t, ConverterCulture=de-DE}" 
                              Subtitle="Gesamtproduktion"/>
                 <icon:PackIconForkAwesome Kind="AreaChart" Foreground="AliceBlue" 
                                           Margin="20 23 10 10"
@@ -136,7 +138,9 @@
                           Margin="0 0 20 0" HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
                           Width="25" Height="25"/>
-                <uc:InfoCard Grid.Column="1" Margin="5 0 5 0" Value="3%" 
+                <uc:InfoCard DataContext="{Binding InfoCardsViewModel}"
+                             Grid.Column="1" Margin="5 0 5 0" 
+                             Value="{Binding ProductionDefectsPercent, StringFormat={}{0:F1} %, ConverterCulture=de-DE}"
                              Subtitle="Produktionsausschuss"/>
                 <icon:PackIconMaterialDesign Grid.Column="1" Kind="BrokenImage" Foreground="AliceBlue" 
                           Margin="27 26 10 10"
