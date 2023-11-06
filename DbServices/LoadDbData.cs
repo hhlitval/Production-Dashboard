@@ -127,5 +127,10 @@ namespace Production_Analysis.DbServices
                 }
             }
         }
+
+        //public static ObservableCollection<ProductionKPI> GetKeyProductionIndicators(DateTime startDate, DateTime endDate)
+        //{
+        //    return null;
+        //}
     }
 }

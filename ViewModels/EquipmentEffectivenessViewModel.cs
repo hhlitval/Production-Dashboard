@@ -38,13 +38,19 @@ namespace Production_Analysis.ViewModels
 
         private double CalculateOverallEquipmentEffectiveness(IEnumerable<EquipmentEffectiveness> equipmentEffectivenesses)
         {
-            Availability = (equipmentEffectivenesses.Select(a => a.OperatingTimeTotal).FirstOrDefault()) /
+            Availability = 
+                (equipmentEffectivenesses.Select(a => a.OperatingTimeTotal).FirstOrDefault()) /
                 (equipmentEffectivenesses.Select(a => a.ScheduledTimeTotal).FirstOrDefault());
-            Performance = (equipmentEffectivenesses.Select(a => a.ProductionTotal).FirstOrDefault()) /
+
+            Performance = 
+                (equipmentEffectivenesses.Select(a => a.ProductionTotal).FirstOrDefault()) /
                 (((equipmentEffectivenesses.Select(a => a.OperatingTimeTotal).FirstOrDefault()))*140);
-            Quality = ((equipmentEffectivenesses.Select(a => a.ProductionTotal).FirstOrDefault()) -
+
+            Quality = 
+                ((equipmentEffectivenesses.Select(a => a.ProductionTotal).FirstOrDefault()) -
                 (equipmentEffectivenesses.Select(a => a.ProductDefectTotal).FirstOrDefault())) /
                 (equipmentEffectivenesses.Select(a => a.ProductionTotal).FirstOrDefault());
+
             return (double)(Availability*Performance*Quality)*100;
         }
     }
