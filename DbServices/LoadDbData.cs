@@ -43,6 +43,9 @@ namespace Production_Analysis.DbServices
                             Downtime = (decimal)reader["Ausfallzeit"],
                             OperatingTime = (decimal)reader["Laufzeit"],
                             ScheduledTime = (short)reader["Betriebszeit"],
+                            EnergyConsumption = (decimal)reader["Energieverbrauch"],
+                            Emissions = (decimal)reader["CO_Emissionen"],
+                            ProductionCosts = (decimal)reader["Produktionskosten"],
                             MonthYear = (DateTime)reader["ProdDate"]
                         });
                     }

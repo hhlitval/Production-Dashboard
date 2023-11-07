@@ -28,7 +28,7 @@ namespace Production_Analysis.ViewModels
                 new LineSeries<decimal>
                 {
                     Values = output.Select(o => o.ProductionOutput),
-                    Name = "Produktion",
+                    Name = null,
                     Fill = null,
                     Stroke = new SolidColorPaint(new SKColor(90, 169, 230)){StrokeThickness = 3},
                     GeometrySize = 0,
@@ -48,8 +48,7 @@ namespace Production_Analysis.ViewModels
             YAxis = new []
                 {
                 new Axis
-                {
-                    Labeler = (value) => value.ToString("0 t"),
+                {                    
                     MinLimit = 0,
                     MaxLimit = 110000,
                     MinStep = 5000,

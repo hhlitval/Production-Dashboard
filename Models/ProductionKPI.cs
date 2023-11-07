@@ -13,6 +13,9 @@ namespace Production_Analysis.Models
         public decimal Downtime { get; set; }        
         public decimal OperatingTime { get; set; }
         public int ScheduledTime { get; set; }
+        public decimal EnergyConsumption { get; set; }
+        public decimal Emissions { get; set; }
+        public decimal ProductionCosts { get; set; }
         public DateTime MonthYear { get; set; }
     }
 }

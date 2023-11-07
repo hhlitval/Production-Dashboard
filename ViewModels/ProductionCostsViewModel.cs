@@ -7,41 +7,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Production_Analysis.DbServices;
+using Production_Analysis.Models;
 
 namespace Production_Analysis.ViewModels
 {
     public class ProductionCostsViewModel : BaseViewModel
     {
         public ISeries[] ProductionCosts { get; set; }
-        public Axis[] XProductionCosts { get; set; }
-        public Axis YProductionCosts { get; set; }
+        public Axis[] XAxis { get; set; }
+        public Axis[] YAxis { get; set; }
 
         public ProductionCostsViewModel()
         {
+            IEnumerable<ProductionKPI> output = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
+
             ProductionCosts = new ISeries[]
             {
-                new LineSeries<double>
+                new LineSeries<decimal>
                 {
-                    Values = new double[] { 1, 2, 1, 1.5, 1.2, 0.9, 1, 1.3, 1.5, 1, 1.4, 1.6 },
+                    Values = output.Select(o => o.ProductionCosts),
+                    Name = null,
                     Stroke = new SolidColorPaint(new SKColor(90, 169, 230)) { StrokeThickness = 3 },
-                    Fill = null,
+                    //Fill = null,
                     GeometrySize = 0,
                     LineSmoothness = 1
                 }
             };
 
-            XProductionCosts = new[]
+            XAxis = new[]
             {
                 new Axis
                 {
-                    Labels = new string[]{"Jan 22", "Feb 22", "Mär 22", "Apr 22", "Mai 22", "Jun 22", "Jul 22",
-                    "Aug 22", "Sep 22", "Okt 22", "Nov 22", "Dez 22"}
+                    Labels = output.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray(),
+                    TextSize = 14
                 }
             };
 
-            YProductionCosts = new Axis
-            {
-                    SeparatorsPaint = null
+            YAxis = new[]
+                {
+                new Axis
+                {                    
+                    SeparatorsPaint = new SolidColorPaint(new SKColor(230, 230, 247)),
+                    TextSize = 14
+                }
             };
         }
     }

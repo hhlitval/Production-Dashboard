@@ -28,6 +28,7 @@ namespace Production_Analysis.ViewModels
                 new ColumnSeries<decimal>
                 {
                     Values = downtime.Select(w => w.Downtime),
+                    Name = null,
                     Fill = new SolidColorPaint(new SKColor(90, 169, 230)),
                     // Defines the distance between every bars in the series
                     Padding = 7,
