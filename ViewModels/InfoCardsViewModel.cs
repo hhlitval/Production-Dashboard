@@ -18,12 +18,12 @@ namespace Production_Analysis.ViewModels
 
         public InfoCardsViewModel()
         {
-            IEnumerable<ProductionKPI> infoCards = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
+            IEnumerable<ProductionKPI> productionIndicators = LoadDbData.GetProductionIndicators(MainViewModel.start, MainViewModel.end);
 
-            ProductionTotal = infoCards.Select(p => p.ProductionOutput).Sum();
-            ProductionDefectsPercent = (infoCards.Select(p => p.ProductionDefect).Sum())/ ProductionTotal;
-            EnergyConsumption = (infoCards.Select(p => p.EnergyConsumption).Sum())/ ProductionTotal;
-            Emissions = (infoCards.Select(p => p.Emissions).Sum()) / ProductionTotal;
+            ProductionTotal = productionIndicators.Select(p => p.ProductionOutput).Sum();
+            ProductionDefectsPercent = (productionIndicators.Select(p => p.ProductionDefect).Sum())/ ProductionTotal;
+            EnergyConsumption = (productionIndicators.Select(p => p.EnergyConsumption).Sum())/ ProductionTotal;
+            Emissions = (productionIndicators.Select(p => p.Emissions).Sum()) / ProductionTotal;
         }
     }
 }

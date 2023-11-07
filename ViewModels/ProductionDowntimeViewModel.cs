@@ -21,13 +21,13 @@ namespace Production_Analysis.ViewModels
 
         public ProductionDowntimeViewModel()
         {
-            IEnumerable<ProductionKPI> downtime = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
+            IEnumerable<ProductionKPI> productionDowntime = LoadDbData.GetProductionDowntime(MainViewModel.start, MainViewModel.end);
 
             ProductionDowntime = new ISeries[]
             {
                 new ColumnSeries<decimal>
                 {
-                    Values = downtime.Select(w => w.Downtime),
+                    Values = productionDowntime.Select(w => w.Downtime),
                     Name = null,
                     Fill = new SolidColorPaint(new SKColor(90, 169, 230)),
                     // Defines the distance between every bars in the series
@@ -45,7 +45,7 @@ namespace Production_Analysis.ViewModels
         {
                 new Axis
                 {
-                    Labels = downtime.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray(),
+                    Labels = productionDowntime.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray(),
                     TextSize = 14
                 }
             };

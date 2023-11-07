@@ -20,16 +20,16 @@ namespace Production_Analysis.ViewModels
 
         public ProductionCostsViewModel()
         {
-            IEnumerable<ProductionKPI> output = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
+            IEnumerable<ProductionKPI> productionCosts = LoadDbData.GetProductionCosts(MainViewModel.start, MainViewModel.end);
 
             ProductionCosts = new ISeries[]
             {
                 new LineSeries<decimal>
                 {
-                    Values = output.Select(o => o.ProductionCosts),
+                    Values = productionCosts.Select(o => o.ProductionCosts),
                     Name = null,
                     Stroke = new SolidColorPaint(new SKColor(90, 169, 230)) { StrokeThickness = 3 },
-                    //Fill = null,
+                    Fill = null,
                     GeometrySize = 0,
                     LineSmoothness = 1
                 }
@@ -39,7 +39,7 @@ namespace Production_Analysis.ViewModels
             {
                 new Axis
                 {
-                    Labels = output.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray(),
+                    Labels = productionCosts.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray(),
                     TextSize = 14
                 }
             };

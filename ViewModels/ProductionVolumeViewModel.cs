@@ -21,15 +21,15 @@ namespace Production_Analysis.ViewModels
 
         public ProductionVolumeViewModel()
         {
-            IEnumerable<ProductionKPI> output = LoadDbData.GetProductionVolume(new DateTime(2008, 1, 1), new DateTime(2008, 12, 31));
+            IEnumerable<ProductionKPI> productionOutput = LoadDbData.GetProductionVolume(MainViewModel.start, MainViewModel.end);
 
             ProductionChart = new ISeries[]
             {
                 new LineSeries<decimal>
                 {
-                    Values = output.Select(o => o.ProductionOutput),
+                    Values = productionOutput.Select(o => o.ProductionOutput),
                     Name = null,
-                    Fill = null,
+                    //Fill = null,
                     Stroke = new SolidColorPaint(new SKColor(90, 169, 230)){StrokeThickness = 3},
                     GeometrySize = 0,
                     LineSmoothness = 1
@@ -40,7 +40,7 @@ namespace Production_Analysis.ViewModels
             {
                 new Axis
                 {
-                    Labels = output.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray(),
+                    Labels = productionOutput.Select(c => (c.MonthYear).ToString("MMM yy")).ToArray(),
                     TextSize = 14
                 }
             };
@@ -48,7 +48,9 @@ namespace Production_Analysis.ViewModels
             YAxis = new []
                 {
                 new Axis
-                {                    
+                {
+
+                    Labeler = (value) => value.ToString("0 t"),
                     MinLimit = 0,
                     MaxLimit = 110000,
                     MinStep = 5000,
