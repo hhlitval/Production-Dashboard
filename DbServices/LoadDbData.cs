@@ -191,6 +191,42 @@ namespace Production_Analysis.DbServices
                 }
             }
         }
+
+        public static ObservableCollection<Shipping> GetShipmentData(DateTime startDate, DateTime endDate)
+        {
+            var shippings = new ObservableCollection<Shipping>();
+
+            using (var connection = new DbConnection().GetConnection())
+            {
+                connection.Open();
+                using (var command = new SqlCommand())
+                {
+                    SqlDataReader reader;
+                    command.Connection = connection;
+                    //Get all data from database
+                    command.CommandText = @"SELECT shipping_date, country, shipment_weight
+                                            FROM Shipping
+                                            WHERE shipping_date BETWEEN @FROMDATE and @TODATE
+                                            ORDER BY shipping_date";
+
+                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
+                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        shippings.Add(new Shipping()
+                        {
+                            DestinationLand = (string)reader["country"],
+                            Quantity = (int)reader["shipment_weight"],
+                            MonthYear = (DateTime)reader["shipping_date"]
+                        });
+                    }
+                    reader.Close();
+
+                    return shippings;
+                }
+            }
+        }
     }
 }
 

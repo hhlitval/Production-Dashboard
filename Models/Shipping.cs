@@ -9,7 +9,7 @@ namespace Production_Analysis.Models
     public class Shipping
     {
         public string? DestinationLand { get; set; }
-        public decimal Quantity { get; set; }
-        public decimal Percentage { get; set; }
+        public int Quantity { get; set; }
+        public DateTime MonthYear { get; set; }
     }
 }

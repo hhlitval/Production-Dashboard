@@ -10,6 +10,7 @@ using SkiaSharp;
 using Production_Analysis.Models;
 using Production_Analysis.DbServices;
 using System.Windows.Media.Media3D;
+using LiveChartsCore.Drawing;
 
 namespace Production_Analysis.ViewModels
 {
@@ -17,7 +18,7 @@ namespace Production_Analysis.ViewModels
     {        
         public ISeries[] ProductionChart{ get; set; }
         public Axis[] XAxis { get; set; }
-        public Axis[] YAxis { get; set; }
+        public Axis[] YAxis { get; set; }       
 
         public ProductionVolumeViewModel()
         {
@@ -27,6 +28,7 @@ namespace Production_Analysis.ViewModels
             {
                 new LineSeries<decimal>
                 {
+                    DataPadding = new LvcPoint(0, 0),
                     Values = productionOutput.Select(o => o.ProductionOutput),
                     Name = null,
                     //Fill = null,
