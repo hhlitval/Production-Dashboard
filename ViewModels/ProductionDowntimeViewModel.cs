@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Production_Analysis.DbServices;
 using Production_Analysis.Models;
+using LiveChartsCore.Drawing;
 
 namespace Production_Analysis.ViewModels
 {
@@ -27,6 +28,7 @@ namespace Production_Analysis.ViewModels
             {
                 new ColumnSeries<decimal>
                 {
+                    DataPadding = new LvcPoint(0, 0.5),
                     Values = productionDowntime.Select(w => w.Downtime),
                     Name = null,
                     Fill = new SolidColorPaint(new SKColor(90, 169, 230)),

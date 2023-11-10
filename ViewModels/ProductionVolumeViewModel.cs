@@ -28,7 +28,7 @@ namespace Production_Analysis.ViewModels
             {
                 new LineSeries<decimal>
                 {
-                    DataPadding = new LvcPoint(0, 0),
+                    DataPadding = new LvcPoint(0, 0.5),
                     Values = productionOutput.Select(o => o.ProductionOutput),
                     Name = null,
                     //Fill = null,
@@ -53,8 +53,8 @@ namespace Production_Analysis.ViewModels
                 {
 
                     Labeler = (value) => value.ToString("0 t"),
-                    //MinLimit = 0,
-                    //MaxLimit = 110000,
+                    MinLimit = 0,
+                    MaxLimit = 110000,
                     MinStep = 5000,
                     SeparatorsPaint = new SolidColorPaint(new SKColor(230, 230, 247)),
                     TextSize = 14

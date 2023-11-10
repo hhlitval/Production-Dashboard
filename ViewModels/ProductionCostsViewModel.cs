@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Production_Analysis.DbServices;
 using Production_Analysis.Models;
+using LiveChartsCore.Drawing;
 
 namespace Production_Analysis.ViewModels
 {
@@ -26,6 +27,7 @@ namespace Production_Analysis.ViewModels
             {
                 new LineSeries<decimal>
                 {
+                    DataPadding = new LvcPoint(0, 0.5),
                     Values = productionCosts.Select(o => o.ProductionCosts),
                     Name = null,
                     Stroke = new SolidColorPaint(new SKColor(90, 169, 230)) { StrokeThickness = 3 },
