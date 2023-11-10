@@ -10,8 +10,10 @@ using Production_Analysis.Models;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Markup;
 
@@ -20,64 +22,45 @@ namespace Production_Analysis.ViewModels
     public class ShippingMapViewModel : BaseViewModel
     {
         public HeatLandSeries[] GeoSeries { get; set; }
-        public List<Shipping>? Lands { get; set; }
+        public List<Shipping>? ShippingVolumesDistribution { get; set; }
+        public double ShipmentsTotal { get; set; }
         public ShippingMapViewModel()
         {
-            IEnumerable<Shipping> shippings = LoadDbData.GetShipmentData(MainViewModel.start, MainViewModel.end);
+            IEnumerable<Shipping> shippings = LoadDbData.GetShipmentData(MainViewModel.start, MainViewModel.end);  
+            ShipmentsTotal = shippings.Select(p => p.Quantity).Sum();
 
-            //ProductionChart = new ISeries[]
-            //{
-            //    new LineSeries<decimal>
-            //    {
-            //        DataPadding = new LvcPoint(0, 0),
-            //        Values = productionOutput.Select(o => o.ProductionOutput),
-            //        Name = null,
-            //        //Fill = null,
-            //        Stroke = new SolidColorPaint(new SKColor(90, 169, 230)){StrokeThickness = 3},
-            //        GeometrySize = 0,
-            //        LineSmoothness = 1
-            //    }
-            //};
-
-            //var lands = new HeatLand[]
-            //{
-                
-            //    new() { Name = "bra", Value = 14 },
-            //    new() { Name = "mex", Value = 10 },
-            //    new() { Name = "usa", Value = 20 },
-            //    new() { Name = "ind", Value = 12 },
-            //    new() { Name = "deu", Value = 13 },
-            //    new() { Name= "jpn", Value = 15 },
-            //    new() { Name = "chn", Value = 18 },
-            //    new() { Name = "nor", Value = 11 },
-            //    new() { Name = "fra", Value = 8 },
-            //    new() { Name = "esp", Value = 7 },
-            //    new() { Name = "kor", Value = 10 },
-            //    new() { Name = "zaf", Value = 12 },
-            //    new() { Name = "tur", Value = 5 },
-            //    new() { Name = "are", Value = 13 }
-            //};
             GeoSeries = new HeatLandSeries[] { new HeatLandSeries {
                     HeatMap = new[]
                         {
                             new SKColor(191, 220, 242).AsLvcColor(), // the first element is the "coldest" 
                             new SKColor(90, 169, 230).AsLvcColor(),
                             new SKColor(4, 105, 181).AsLvcColor() // the last element is the "hottest" 
-                        },
-                    Name = shippings.Select(o => o.DestinationLand).FirstOrDefault(),
-                    Lands = null,
+                        },                   
+
+                    Lands = shippings.Select(item => new HeatLand
+                    {
+                        Name = GetJsonShortName(item.DestinationLand),
+                        Value = item.Quantity
+                    }).ToArray()           
 
                     }
                 };
-            Lands = new List<Shipping>()
+            ShippingVolumesDistribution = shippings.Select(item => new Shipping
             {
-                //new Shipping { DestinationLand = "USA", Quantity = 12864, Percentage = 14.3M},
-                //new Shipping { DestinationLand = "China", Quantity = 10136, Percentage = 11.3M},
-                //new Shipping { DestinationLand = "Japan", Quantity = 7561, Percentage = 8.4M},
-                //new Shipping { DestinationLand = "Brasilien", Quantity = 7089, Percentage = 7.9M},
-                //new Shipping { DestinationLand = "Deutschland", Quantity = 6954, Percentage = 7.7M},
-                //new Shipping { DestinationLand = "Indien", Quantity = 6233, Percentage = 6.9M}
-            };
+                DestinationLand = item.DestinationLand,
+                Quantity = item.Quantity,
+                Percentage = (item.Quantity/ShipmentsTotal)*100
+            }).ToList();
+        }
+
+        private string GetJsonShortName(string? landName)
+        {            
+            using FileStream json = File.OpenRead(@"C:\Users\sasha\source\repos\C#\foo\word-map-index.json");
+            List<LandJson>? lands = JsonSerializer.Deserialize<List<LandJson>>(json);
+            
+            return (from result in lands
+                    where result.Name == landName
+                    select result.ShortName).FirstOrDefault() ?? "";
         }
     }
 }

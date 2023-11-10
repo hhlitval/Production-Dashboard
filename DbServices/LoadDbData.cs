@@ -204,10 +204,11 @@ namespace Production_Analysis.DbServices
                     SqlDataReader reader;
                     command.Connection = connection;
                     //Get all data from database
-                    command.CommandText = @"SELECT shipping_date, country, shipment_weight
+                    command.CommandText = @"SELECT country, SUM(shipment_weight) as shipment_weight
                                             FROM Shipping
                                             WHERE shipping_date BETWEEN @FROMDATE and @TODATE
-                                            ORDER BY shipping_date";
+                                            GROUP BY country
+                                            ORDER BY shipment_weight DESC";
 
                     command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
                     command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
@@ -217,8 +218,7 @@ namespace Production_Analysis.DbServices
                         shippings.Add(new Shipping()
                         {
                             DestinationLand = (string)reader["country"],
-                            Quantity = (int)reader["shipment_weight"],
-                            MonthYear = (DateTime)reader["shipping_date"]
+                            Quantity = (int)reader["shipment_weight"]
                         });
                     }
                     reader.Close();

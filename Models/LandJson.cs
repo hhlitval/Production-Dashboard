@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Production_Analysis.Models
 {
-    public class Shipping
+    public class LandJson
     {
-        public string? DestinationLand { get; set; }
-        public int Quantity { get; set; }
-        public double Percentage { get; set; }
+        public string? ShortName { get; set; }
+        public string? Name { get; set; }
     }
 }

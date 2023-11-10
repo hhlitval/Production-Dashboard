@@ -8,8 +8,8 @@ namespace Production_Analysis.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public readonly static DateTime start = new DateTime(2017, 1, 1);
-        public readonly static DateTime end = new DateTime(2017, 12, 31);
+        public readonly static DateTime start = new DateTime(2014, 1, 1);
+        public readonly static DateTime end = new DateTime(2014, 12, 31);
         public ProductionVolumeViewModel ProductionVolumeViewModel { get; }
         public ProductionDowntimeViewModel ProductionDowntimeViewModel { get; }        
         public EquipmentEffectivenessViewModel EquipmentEffectivenessViewModel { get; }

@@ -333,7 +333,7 @@
         
         <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
             <Setter Property="Background" Value="#ffffff"/>
-            <Setter Property="Margin" Value="0 4 0 0"/>
+            <Setter Property="Margin" Value="0 5 0 0"/>
             <Setter Property="SnapsToDevicePixels" Value="true"/>
             <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
             <Setter Property="ValidationErrorTemplate">

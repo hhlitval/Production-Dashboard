@@ -53,8 +53,8 @@ namespace Production_Analysis.ViewModels
                 {
 
                     Labeler = (value) => value.ToString("0 t"),
-                    MinLimit = 0,
-                    MaxLimit = 110000,
+                    //MinLimit = 0,
+                    //MaxLimit = 110000,
                     MinStep = 5000,
                     SeparatorsPaint = new SolidColorPaint(new SKColor(230, 230, 247)),
                     TextSize = 14
