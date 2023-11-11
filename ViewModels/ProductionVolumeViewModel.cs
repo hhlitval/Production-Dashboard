@@ -51,7 +51,6 @@ namespace Production_Analysis.ViewModels
                 {
                 new Axis
                 {
-
                     Labeler = (value) => value.ToString("0 t"),
                     MinLimit = 0,
                     MaxLimit = 110000,
