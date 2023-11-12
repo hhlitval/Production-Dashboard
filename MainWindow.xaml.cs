@@ -1,5 +1,11 @@
-﻿using System.Windows;
+﻿using System.Printing;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using Production_Analysis.ViewModels;
 
 namespace Production_Analysis
@@ -29,25 +35,12 @@ namespace Production_Analysis
             System.Windows.Application.Current.Shutdown();
         }
 
-        //public class ViewModel
-        //{
-        //    public Axis[] XAxes { get; set; } = new Axis[]
-        //    {
-        //        new Axis
-        //        {
-        //            MinStep = 2,
-        //            TextSize = 0,
-        //            SeparatorsPaint = null
-        //        }
-        //    };
-
-        //    public Axis[] YAxes { get; set; } = new Axis[]
-        //    {
-        //        new Axis
-        //        {
-        //            TextSize = 0,
-        //            SeparatorsPaint = null
-        //        }
-        //    };
+        private void PrintButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create a PrintDialog
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.PrintVisual(this, "Dashboard printing");
+           
+        }
     }
 }
