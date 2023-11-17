@@ -7,6 +7,9 @@ using System.Windows.Markup;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using Production_Analysis.ViewModels;
+using Microsoft.Win32;
+using System.IO;
+using System.Reflection.Metadata;
 
 namespace Production_Analysis
 {
@@ -37,10 +40,44 @@ namespace Production_Analysis
 
         private void PrintButton_Click(object sender, RoutedEventArgs e)
         {
-            // Create a PrintDialog
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.PrintVisual(this, "Dashboard printing");
-           
+            //PrintDialog printDialog = new PrintDialog();
+            //FlowDocument doc = new FlowDocument();
+            //printDialog.PrintVisual(this, "Dashboard printing");
+
+            
+
+                // Create a PrintDialog
+                PrintDialog printDialog = new PrintDialog();
+
+                if (printDialog.ShowDialog() == true)
+                {
+                    // Get the selected printer
+                    PrintQueue printQueue = printDialog.PrintQueue;
+
+                    // Create a FixedDocument to hold the content you want to print
+                    FixedDocument fixedDocument = new FixedDocument();
+
+                    // Create a FixedPage
+                    FixedPage fixedPage = new FixedPage();
+                    fixedPage.Width = printQueue.GetPrintCapabilities().PageImageableArea.ExtentWidth;
+                    fixedPage.Height = printQueue.GetPrintCapabilities().PageImageableArea.ExtentHeight;
+
+                    // Add your dashboard content to the FixedPage
+                    
+                    Dashboard.Measure(new Size(fixedPage.Width, fixedPage.Height));
+                    Dashboard.Arrange(new Rect(new Point(0, 0), Dashboard.DesiredSize));
+                    fixedPage.Children.Add(Dashboard);
+
+                    // Add the FixedPage to the FixedDocument
+                    PageContent pageContent = new PageContent();
+                    ((IAddChild)pageContent).AddChild(fixedPage);
+                    fixedDocument.Pages.Add(pageContent);
+
+                    // Print the FixedDocument
+                    printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Dashboard Printing");
+                
+            }
+
         }
     }
 }

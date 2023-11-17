@@ -3,10 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Production_Analysis.Views"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             xmlns:local="clr-namespace:Production_Analysis.Views" xmlns:uc="clr-namespace:Production_Analysis.UserControls" xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <uc:InfoCard DataContext="{Binding InfoCardsViewModel}"
+                 Grid.Column="0" Margin="0 0 5 0"                              
+                 Value="{Binding ProductionTotal, StringFormat={}{0:F1} t, 
+                         ConverterCulture=de-DE}" 
+                 Subtitle="Gesamtproduktion"/>
+        <icon:PackIconForkAwesome Kind="AreaChart" Foreground="AliceBlue" 
+                              Margin="20 23 10 10"
+                              Width="30" Height="30"/>
+        <icon:PackIconEvaIcons Kind="ArrowUp" Foreground="#69d1c5" 
+              Margin="0 0 20 0" HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+              Width="25" Height="25"/>
+        <uc:InfoCard DataContext="{Binding InfoCardsViewModel}"
+                 Grid.Column="1" Margin="5 0 5 0"                              
+                 Value="{Binding ProductionDefectsPercent, StringFormat={}{0:#.#%}, 
+                         ConverterCulture=de-DE}"
+                 Subtitle="Produktionsausschuss"/>
+        <icon:PackIconMaterialDesign Grid.Column="1" Kind="BrokenImage" Foreground="AliceBlue" 
+              Margin="27 26 10 10"
+              Width="25" Height="25"/>
+        <icon:PackIconEvaIcons Grid.Column="1" Kind="ArrowUp" Foreground="#d8315b"
+                           Margin="0 0 20 0" HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Width="25" Height="25"/>
+        <uc:InfoCard DataContext="{Binding InfoCardsViewModel}"
+                 Grid.Column="2" Margin="5 0 5 0"
+                 Value="{Binding EnergyConsumption, StringFormat={}{0:#.## kWh/t}, 
+                         ConverterCulture=de-DE}"
+                 Subtitle="Energieverbrauch"/>
+        <icon:PackIconZondicons Grid.Column="2" Kind="Bolt" Foreground="AliceBlue"
+                                 Margin="27 26 10 10"
+                                 Width="25" Height="25"/>
+        <icon:PackIconEvaIcons Grid.Column="2" Kind="ArrowDown" Foreground="#69d1c5"
+           Margin="0 0 20 0" HorizontalAlignment="Right"
+           VerticalAlignment="Center"
+           Width="25" Height="25"/>
+        <uc:InfoCard DataContext="{Binding InfoCardsViewModel}"
+                 Grid.Column="3" Margin="5 0 0 0"
+                 Value="{Binding Emissions, StringFormat={}{0:#.# kg/t}, 
+                         ConverterCulture=de-DE}"
+                 Subtitle="Emissionen (CO)"/>
+        <icon:PackIconVaadinIcons Grid.Column="3" Kind="Factory" Foreground="AliceBlue"
+                 Margin="27 26 10 10"
+                 Width="25" Height="25"/>
+        <icon:PackIconEvaIcons Grid.Column="3" Kind="ArrowUp" Foreground="#d8315b"
+           Margin="0 0 20 0" HorizontalAlignment="Right"
+           VerticalAlignment="Center"
+           Width="25" Height="25"/>
     </Grid>
 </UserControl>
