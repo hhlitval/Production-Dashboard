@@ -1,21 +1,12 @@
-﻿using LiveChartsCore;
-using LiveChartsCore.Drawing;
-using LiveChartsCore.Geo;
-using LiveChartsCore.SkiaSharpView;
+﻿using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
-using LiveChartsCore.SkiaSharpView.Painting;
-using MahApps.Metro.IconPacks;
 using Production_Analysis.DbServices;
 using Production_Analysis.Models;
 using SkiaSharp;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Markup;
 
 namespace Production_Analysis.ViewModels
 {

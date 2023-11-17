@@ -1,15 +1,11 @@
 ﻿using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SkiaSharp;
 using Production_Analysis.Models;
 using Production_Analysis.DbServices;
-using System.Windows.Media.Media3D;
 using LiveChartsCore.Drawing;
 
 namespace Production_Analysis.ViewModels

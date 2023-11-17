@@ -2,12 +2,8 @@
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore;
 using SkiaSharp;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Production_Analysis.DbServices;
 using Production_Analysis.Models;
 using LiveChartsCore.Drawing;

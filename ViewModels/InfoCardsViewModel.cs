@@ -1,12 +1,7 @@
 ﻿using Production_Analysis.DbServices;
 using Production_Analysis.Models;
-using Production_Analysis.UserControls;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Production_Analysis.ViewModels
 {
