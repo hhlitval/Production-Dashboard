@@ -6,15 +6,20 @@
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>            
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Text="Versand Infografik" 
                Style="{StaticResource viewTitle}"/>
-        <lvc:GeoMap Grid.Row="2" 
+        <lvc:GeoMap Grid.Row="1" 
                 DataContext="{Binding ShippingMapViewModel}"
                 Series="{Binding GeoSeries}" 
                 MapProjection="Mercator" 
@@ -22,5 +27,23 @@
                 Width="400" 
                 Height="350" 
                 HorizontalAlignment="Left"/>
+        <DataGrid Grid.Column="1" Grid.RowSpan="2" 
+                    Margin="0 15 5 10"
+                    VerticalScrollBarVisibility="Hidden"
+                    DataContext="{Binding ShippingMapViewModel}"
+                    ItemsSource="{Binding ShippingVolumesDistribution}"                      
+                    CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" 
+                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                    RowStyle="{DynamicResource DataGridRowStyle1}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Land" IsReadOnly="True" CanUserResize="True" Width="2.5*" 
+                                      Binding="{Binding DestinationLand}"/>
+                                <DataGridTextColumn Header="Versand (t)" IsReadOnly="True" CanUserResize="True" Width="1.8*"
+                                      Binding="{Binding Quantity}"/>
+                                <DataGridTextColumn Header="%" IsReadOnly="True" CanUserResize="True" Width="*"
+                                      Binding="{Binding Percentage, StringFormat=F1, 
+                                      ConverterCulture=de-DE}"/>
+                            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

@@ -4,8 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
-        xmlns:views="clr-namespace:Production_Analysis.Views"
+        xmlns:views="clr-namespace:Production_Analysis.Views" 
+        xmlns:uc="clr-namespace:Production_Analysis.UserControls"
         mc:Ignorable="d" Height="800" Width="1200" 
         WindowStartupLocation="CenterScreen" 
         Background="Transparent" AllowsTransparency="True"
@@ -27,49 +27,26 @@
             </Grid.ColumnDefinitions>
 
             <!-- Menu Bar -->
-            <Border Grid.Row="0" Grid.ColumnSpan="5" CornerRadius="10 10 0 0" Background="#7fc8f8"/>
-            <Image Source="\Images\proanalysis.png" HorizontalAlignment="Left" Margin="20 0 0 0"/>
-            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
-                        HorizontalAlignment="Right" Margin="0 0 10 0" Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="01.01.2022 - 31.12.2022" VerticalAlignment="Center"
-                           Foreground="#31393c" 
-                           FontSize="15"/>
-                <Button Style="{StaticResource topMenuButton}">
-                    <icon:PackIconMaterial Kind="Tune" Foreground="#31393c"/>
-                </Button>
-                <Button Style="{StaticResource topMenuButton}">
-                    <icon:PackIconOcticons Kind="Calendar" Foreground="#31393c"/>
-                </Button>
-                <Button Style="{StaticResource topMenuButton}">
-                    <icon:PackIconBootstrapIcons Kind="FilePdf" Foreground="#31393c"/>
-                </Button>
-                <Button Style="{StaticResource topMenuButton}" Click="PrintButton_Click">
-                    <icon:PackIconUnicons  Kind="Print" Foreground="#31393c" />
-                </Button>
-                <Button Style="{StaticResource topMenuButton}">
-                    <icon:PackIconMaterial Kind="HelpCircleOutline" Foreground="#31393c"/>
-                </Button>
-                <Button Style="{StaticResource topMenuButton}" Click="CloseButton_Click" >
-                    <icon:PackIconMaterial Kind="Close" Style="{StaticResource topMenuIcon}"
-                                           Foreground="#31393c"/>
-                </Button>
-            </StackPanel>
+            <uc:MenuBar Grid.Row="0" Grid.ColumnSpan="5" />
 
             <!-- Production Volume View -->
-            <Border Grid.Row="1" Grid.Column="0" Background="#ffffff" CornerRadius="10" 
-                    Margin="20 10 10 10" Padding="10">
+            <Border Grid.Row="1" Grid.Column="0" 
+                    Style="{StaticResource borderViewModel}"                    
+                    Margin="20 10 5 10">
                 <views:ProductionVolumeView/>
             </Border>
 
             <!-- Production Downtime View -->
-            <Border Grid.Row="1" Grid.Column="1" Background="#ffffff" CornerRadius="10" 
-                    Margin="10 10 10 10" Padding="10">
+            <Border Grid.Row="1" Grid.Column="1" 
+                    Style="{StaticResource borderViewModel}"
+                    Margin="5 10 5 10" >
                 <views:ProductionDowntimeView/>
             </Border>
 
             <!-- Equipment Effectivenes View -->
-            <Border Grid.Row="1" Grid.Column="2" Background="#ffffff" CornerRadius="10" 
-                    Margin="10 10 20 10" Padding="10">
+            <Border Grid.Row="1" Grid.Column="2"
+                    Style="{StaticResource borderViewModel}"
+                    Margin="5 10 20 10">
                 <views:EquipmentEffectivenessView/>
             </Border>
 
@@ -79,36 +56,18 @@
             </Grid>
 
             <!-- Production Costs View -->
-            <Border Grid.Row="3" Grid.Column="2" Background="#ffffff" CornerRadius="10" 
-                    Margin="5 10 20 10" Padding="10">
+            <Border Grid.Row="3" Grid.Column="2"
+                    Style="{StaticResource borderViewModel}"                    
+                    Margin="5 10 20 10">
                 <views:ProductionCostsView/>
             </Border>
 
             <!-- Shipping View -->
-            <Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="20 10 5 10"
-                    CornerRadius="10" Background="White" Padding="10">
+            <Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
+                    Style="{StaticResource borderViewModel}"
+                    Margin="20 10 5 10">
                 <views:ShippingMapView/>
-            </Border>
-
-            <DataGrid Grid.Row="3" Grid.Column="1" 
-                      Margin="20 20 20 20" 
-                      Padding="10"
-                      VerticalScrollBarVisibility="Hidden"
-                      DataContext="{Binding ShippingMapViewModel}"
-                      ItemsSource="{Binding ShippingVolumesDistribution}"                      
-                      CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" 
-                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                      RowStyle="{DynamicResource DataGridRowStyle1}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Land" IsReadOnly="True" CanUserResize="True" Width="2.5*" 
-                                        Binding="{Binding DestinationLand}"/>
-                    <DataGridTextColumn Header="Versand (t)" IsReadOnly="True" CanUserResize="True" Width="1.8*"
-                                        Binding="{Binding Quantity}"/>
-                    <DataGridTextColumn Header="%" IsReadOnly="True" CanUserResize="True" Width="*"
-                                        Binding="{Binding Percentage, StringFormat=F1, 
-                                        ConverterCulture=de-DE}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            </Border>            
 
             <Border Grid.Row="5" Grid.ColumnSpan="5" CornerRadius="0 0 10 10" Background="#7fc8f8"/>
         </Grid>
