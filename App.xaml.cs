@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using LiveChartsCore.SkiaSharpView;
+using Production_Analysis.Views;
+using Production_Analysis.ViewModels;
 
 namespace Production_Analysis
 
@@ -16,6 +18,15 @@ namespace Production_Analysis
     /// </summary>
     public partial class App : Application
     {
-        
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel()
+            };
+            MainWindow.Show();
+
+            base.OnStartup(e);
+        }
     }
 }

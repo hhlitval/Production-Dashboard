@@ -23,7 +23,7 @@ namespace Production_Analysis.ViewModels
             InfoCardsViewModel = new InfoCardsViewModel();
             ShippingMapViewModel = new ShippingMapViewModel();
             ProductionCostsViewModel = new ProductionCostsViewModel();
-        }
 
+        }        
     }
 }

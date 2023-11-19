@@ -21,9 +21,6 @@ namespace Production_Analysis
         public MainWindow()
         {
             InitializeComponent();
-
-            DataContext = new MainViewModel();
-            //DataContext = new ProductionChartViewModel(new DateTime(2018, 01, 01), new DateTime(2018, 03, 08));
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -33,6 +30,5 @@ namespace Production_Analysis
                 this.DragMove();
             }
         }
-
     }
 }
