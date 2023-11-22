@@ -20,7 +20,7 @@ namespace Production_Analysis.ViewModels
         [Obsolete]
         public EquipmentEffectivenessViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> equipmentEffectivenesses = LoadDbData.GetEquipmentEffectiveness(period.Start, period.End);
+            IEnumerable<ProductionKPI> equipmentEffectivenesses = LoadDbData.GetEquipmentEffectiveness(period);
             
             EquipmentEffectiveness = new GaugeBuilder()
                 .WithLabelsSize(30)

@@ -14,7 +14,7 @@ namespace Production_Analysis.DbServices
 {
     public class LoadDbData
     {
-        public static ObservableCollection<ProductionKPI> GetProductionVolume(DateTime startDate, DateTime endDate)
+        public static ObservableCollection<ProductionKPI> GetProductionVolume(TimePeriod period)
         {
             var productionOutput = new ObservableCollection<ProductionKPI>();
 
@@ -31,8 +31,8 @@ namespace Production_Analysis.DbServices
                                             WHERE ProdDate BETWEEN @FROMDATE and @TODATE
                                             ORDER BY ProdDate";
 
-                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
-                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
+                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = period.Start;
+                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = period.End;
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -49,7 +49,7 @@ namespace Production_Analysis.DbServices
             }
         }
 
-        public static ObservableCollection<ProductionKPI> GetProductionDowntime(DateTime startDate, DateTime endDate)
+        public static ObservableCollection<ProductionKPI> GetProductionDowntime(TimePeriod period)
         {
             var productionDowntime = new ObservableCollection<ProductionKPI>();
 
@@ -66,8 +66,8 @@ namespace Production_Analysis.DbServices
                                             WHERE ProdDate BETWEEN @FROMDATE and @TODATE
                                             ORDER BY ProdDate";
 
-                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
-                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
+                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = period.Start;
+                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = period.End;
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -84,7 +84,7 @@ namespace Production_Analysis.DbServices
             }
         }
 
-        public static ObservableCollection<ProductionKPI> GetEquipmentEffectiveness(DateTime startDate, DateTime endDate)
+        public static ObservableCollection<ProductionKPI> GetEquipmentEffectiveness(TimePeriod period)
         {
             var equipmentEffectivenesses = new ObservableCollection<ProductionKPI>();
 
@@ -100,8 +100,8 @@ namespace Production_Analysis.DbServices
                                             FROM ProductionOverview
                                             WHERE ProdDate BETWEEN @FROMDATE and @TODATE";
 
-                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
-                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
+                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = period.Start;
+                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = period.End;
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -120,7 +120,7 @@ namespace Production_Analysis.DbServices
             }
         }
 
-        public static ObservableCollection<ProductionKPI> GetProductionIndicators(DateTime startDate, DateTime endDate)
+        public static ObservableCollection<ProductionKPI> GetProductionIndicators(TimePeriod period)
         {
             var productionIndicators = new ObservableCollection<ProductionKPI>();
 
@@ -137,8 +137,8 @@ namespace Production_Analysis.DbServices
                                             WHERE ProdDate BETWEEN @FROMDATE and @TODATE
                                             ORDER BY ProdDate";
 
-                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
-                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
+                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = period.Start;
+                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = period.End;
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -157,7 +157,7 @@ namespace Production_Analysis.DbServices
             }
         }
 
-        public static ObservableCollection<ProductionKPI> GetProductionCosts(DateTime startDate, DateTime endDate)
+        public static ObservableCollection<ProductionKPI> GetProductionCosts(TimePeriod period)
         {
             var productionCosts = new ObservableCollection<ProductionKPI>();
 
@@ -174,8 +174,8 @@ namespace Production_Analysis.DbServices
                                             WHERE ProdDate BETWEEN @FROMDATE and @TODATE
                                             ORDER BY ProdDate";
 
-                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
-                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
+                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = period.Start;
+                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = period.End;
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -192,7 +192,7 @@ namespace Production_Analysis.DbServices
             }
         }
 
-        public static ObservableCollection<Shipping> GetShipmentData(DateTime startDate, DateTime endDate)
+        public static ObservableCollection<Shipping> GetShipmentData(TimePeriod period)
         {
             var shippings = new ObservableCollection<Shipping>();
 
@@ -210,8 +210,8 @@ namespace Production_Analysis.DbServices
                                             GROUP BY country
                                             ORDER BY shipment_weight DESC";
 
-                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = startDate;
-                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = endDate;
+                    command.Parameters.Add("@FROMDATE", System.Data.SqlDbType.DateTime2).Value = period.Start;
+                    command.Parameters.Add("@TODATE", System.Data.SqlDbType.DateTime2).Value = period.End;
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {

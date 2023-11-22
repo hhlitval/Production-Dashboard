@@ -14,7 +14,7 @@ namespace Production_Analysis.ViewModels
 
         public InfoCardsViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> productionIndicators = LoadDbData.GetProductionIndicators(period.Start, period.End);
+            IEnumerable<ProductionKPI> productionIndicators = LoadDbData.GetProductionIndicators(period);
 
             ProductionTotal = (productionIndicators.Select(p => p.ProductionOutput).Sum());
             ProductionDefectsPercent = (productionIndicators.Select(p => p.ProductionDefect).Sum()) / ProductionTotal;

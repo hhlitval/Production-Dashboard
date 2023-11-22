@@ -18,7 +18,7 @@ namespace Production_Analysis.ViewModels
 
         public ProductionDowntimeViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> productionDowntime = LoadDbData.GetProductionDowntime(period.Start, period.End);
+            IEnumerable<ProductionKPI> productionDowntime = LoadDbData.GetProductionDowntime(period);
 
             ProductionDowntime = new ISeries[]
             {

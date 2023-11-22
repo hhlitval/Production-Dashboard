@@ -18,7 +18,7 @@ namespace Production_Analysis.ViewModels
 
         public ProductionVolumeViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> productionOutput = LoadDbData.GetProductionVolume(period.Start, period.End);
+            IEnumerable<ProductionKPI> productionOutput = LoadDbData.GetProductionVolume(period);
 
             ProductionChart = new ISeries[]
             {

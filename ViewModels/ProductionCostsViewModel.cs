@@ -18,7 +18,7 @@ namespace Production_Analysis.ViewModels
 
         public ProductionCostsViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> productionCosts = LoadDbData.GetProductionCosts(period.Start, period.End);
+            IEnumerable<ProductionKPI> productionCosts = LoadDbData.GetProductionCosts(period);
 
             ProductionCosts = new ISeries[]
             {
