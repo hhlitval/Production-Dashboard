@@ -12,9 +12,9 @@ namespace Production_Analysis.ViewModels
         public decimal EnergyConsumption { get; set; }
         public decimal Emissions { get; set; }
 
-        public InfoCardsViewModel()
+        public InfoCardsViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> productionIndicators = LoadDbData.GetProductionIndicators(MainViewModel.start, MainViewModel.end);
+            IEnumerable<ProductionKPI> productionIndicators = LoadDbData.GetProductionIndicators(period.Start, period.End);
 
             ProductionTotal = (productionIndicators.Select(p => p.ProductionOutput).Sum());
             ProductionDefectsPercent = (productionIndicators.Select(p => p.ProductionDefect).Sum()) / ProductionTotal;

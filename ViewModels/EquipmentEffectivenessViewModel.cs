@@ -18,9 +18,9 @@ namespace Production_Analysis.ViewModels
         public decimal Quality { get; set; }
 
         [Obsolete]
-        public EquipmentEffectivenessViewModel()
+        public EquipmentEffectivenessViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> equipmentEffectivenesses = LoadDbData.GetEquipmentEffectiveness(MainViewModel.start, MainViewModel.end);
+            IEnumerable<ProductionKPI> equipmentEffectivenesses = LoadDbData.GetEquipmentEffectiveness(period.Start, period.End);
             
             EquipmentEffectiveness = new GaugeBuilder()
                 .WithLabelsSize(30)

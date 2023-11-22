@@ -16,9 +16,9 @@ namespace Production_Analysis.ViewModels
         public Axis[] XAxis { get; set; }
         public Axis[] YAxis { get; set; }       
 
-        public ProductionVolumeViewModel()
+        public ProductionVolumeViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> productionOutput = LoadDbData.GetProductionVolume(MainViewModel.start, MainViewModel.end);
+            IEnumerable<ProductionKPI> productionOutput = LoadDbData.GetProductionVolume(period.Start, period.End);
 
             ProductionChart = new ISeries[]
             {

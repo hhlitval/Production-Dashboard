@@ -15,9 +15,9 @@ namespace Production_Analysis.ViewModels
         public HeatLandSeries[] GeoSeries { get; set; }
         public List<Shipping>? ShippingVolumesDistribution { get; set; }
         public double ShipmentsTotal { get; set; }
-        public ShippingMapViewModel()
+        public ShippingMapViewModel(TimePeriod period)
         {
-            IEnumerable<Shipping> shippings = LoadDbData.GetShipmentData(MainViewModel.start, MainViewModel.end);  
+            IEnumerable<Shipping> shippings = LoadDbData.GetShipmentData(period.Start, period.End);  
             ShipmentsTotal = shippings.Select(p => p.Quantity).Sum();
 
             GeoSeries = new HeatLandSeries[] { new HeatLandSeries {

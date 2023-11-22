@@ -16,9 +16,9 @@ namespace Production_Analysis.ViewModels
         public Axis[] XAxis { get; set; }
         public Axis[] YAxis { get; set; }
 
-        public ProductionDowntimeViewModel()
+        public ProductionDowntimeViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> productionDowntime = LoadDbData.GetProductionDowntime(MainViewModel.start, MainViewModel.end);
+            IEnumerable<ProductionKPI> productionDowntime = LoadDbData.GetProductionDowntime(period.Start, period.End);
 
             ProductionDowntime = new ISeries[]
             {

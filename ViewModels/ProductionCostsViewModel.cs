@@ -16,9 +16,9 @@ namespace Production_Analysis.ViewModels
         public Axis[] XAxis { get; set; }
         public Axis[] YAxis { get; set; }
 
-        public ProductionCostsViewModel()
+        public ProductionCostsViewModel(TimePeriod period)
         {
-            IEnumerable<ProductionKPI> productionCosts = LoadDbData.GetProductionCosts(MainViewModel.start, MainViewModel.end);
+            IEnumerable<ProductionKPI> productionCosts = LoadDbData.GetProductionCosts(period.Start, period.End);
 
             ProductionCosts = new ISeries[]
             {
