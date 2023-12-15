@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Printing;
 using System.Text;
@@ -26,8 +28,6 @@ namespace Production_Analysis.UserControls
         {
             InitializeComponent();
         }
-
-        
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
