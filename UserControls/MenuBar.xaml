@@ -12,10 +12,8 @@
             <Image Source="\Images\proanalysis.png" HorizontalAlignment="Left" Margin="20 0 0 0"/>
             <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
             HorizontalAlignment="Right" Margin="0 0 10 0" Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="01.01.2022 - 31.12.2022" VerticalAlignment="Center"
-                           Foreground="#31393c"
-                           FontSize="15"/>
-                <ComboBox Width="200" 
+                
+                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="70" Height="25" 
                           SelectedItem="2008"
                           ItemsSource="{Binding Years}">
                     <!-- <icon:PackIconMaterial Kind="Tune" Foreground="#31393c"/> -->
