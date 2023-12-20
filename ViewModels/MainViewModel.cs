@@ -1,4 +1,5 @@
 ﻿using Production_Analysis.Comands;
+using Production_Analysis.DbServices;
 using Production_Analysis.Models;
 using System;
 using System.Collections.Generic;
@@ -32,13 +33,13 @@ namespace Production_Analysis.ViewModels
         [Obsolete]
         public MainViewModel()
         {
-            Years = new() { "2006", "2007", "2008", "2009" };
             ProductionVolumeViewModel = new ProductionVolumeViewModel(TimePeriod);
             ProductionDowntimeViewModel = new ProductionDowntimeViewModel(TimePeriod);
             EquipmentEffectivenessViewModel = new EquipmentEffectivenessViewModel(TimePeriod);
             InfoCardsViewModel = new InfoCardsViewModel(TimePeriod);
             ShippingMapViewModel = new ShippingMapViewModel(TimePeriod);
             ProductionCostsViewModel = new ProductionCostsViewModel(TimePeriod);
+            Years = LoadDbData.GetYearsData();
         }
     }
 }

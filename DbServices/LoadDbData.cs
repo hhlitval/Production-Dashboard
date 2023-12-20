@@ -72,8 +72,8 @@ namespace Production_Analysis.DbServices
                     while (reader.Read())
                     {
                         productionDowntime.Add(new ProductionKPI()
-                        {                            
-                            Downtime = (decimal)reader["Ausfallzeit"],                            
+                        {
+                            Downtime = (decimal)reader["Ausfallzeit"],
                             MonthYear = (DateTime)reader["ProdDate"]
                         });
                     }
@@ -227,6 +227,33 @@ namespace Production_Analysis.DbServices
                 }
             }
         }
+
+        internal static ObservableCollection<string> GetYearsData()
+        {
+            var years = new ObservableCollection<string>();
+
+            using (var connection = new DbConnection().GetConnection())
+            {
+                connection.Open();
+                using (var command = new SqlCommand())
+                {
+                    SqlDataReader reader;
+                    command.Connection = connection;
+                    //Get all data from database
+                    command.CommandText = @"SELECT YEAR(ProdDate) AS Year
+                                            FROM ProductionOverview
+                                            GROUP BY YEAR(ProdDate)";
+                    
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        years.Add(((int)reader["Year"]).ToString());
+                    }
+                    reader.Close();
+
+                    return years;
+                }
+            }
+        }
     }
 }
-
