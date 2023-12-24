@@ -10,11 +10,11 @@ namespace Production_Analysis.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private ObservableCollection<string> _years;
+        private ObservableCollection<string>? _years;
 
         public TimePeriod TimePeriod { get; set; }
                 = new TimePeriod() { Start = new DateTime(2017, 1, 1), End = new DateTime(2017, 12, 31) };
-        public ObservableCollection<string> Years
+        public ObservableCollection<string>? Years
         {
             get { return _years; }
             set
