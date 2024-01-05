@@ -11,12 +11,19 @@
         <Grid>
             <Image Source="\Images\proanalysis.png" HorizontalAlignment="Left" Margin="20 0 0 0"/>
             <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
-            HorizontalAlignment="Right" Margin="0 0 10 0" Orientation="Horizontal" VerticalAlignment="Center">
-                
-                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="70" Height="25" 
-                          SelectedItem="2008"
-                          ItemsSource="{Binding Years}">
-                    <!-- <icon:PackIconMaterial Kind="Tune" Foreground="#31393c"/> -->
+                        HorizontalAlignment="Right" 
+                        Margin="0 0 10 0" 
+                        Orientation="Horizontal" 
+                        VerticalAlignment="Center">
+
+                <ComboBox Style="{DynamicResource comboBox}" 
+                          FontSize="14"                          
+                          Margin="0 5 0 5"
+                          HorizontalContentAlignment="Left"
+                          VerticalAlignment="Center"
+                          ItemContainerStyle="{DynamicResource comboBoxItem}"
+                          ItemsSource="{Binding Years}"
+                          SelectedItem="2007">
                 </ComboBox>
                 <Button Style="{StaticResource topMenuButton}">
                     <icon:PackIconOcticons Kind="Calendar" Foreground="#31393c"/>
