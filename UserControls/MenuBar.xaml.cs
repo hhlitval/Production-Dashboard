@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System;
 
 namespace Production_Analysis.UserControls
 {
@@ -34,26 +35,36 @@ namespace Production_Analysis.UserControls
 
         private void PrintPDF_Click(object sender, RoutedEventArgs e)
         {
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)ActualWidth, (int)ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            renderTargetBitmap.Render(this);
+
+            // Convert the captured image to a BitmapImage
+            BitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
+
+            // Save the rendered image to a file
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string imageFilePath = Path.Combine(desktopPath, "windowImage.png");
+
+            using (FileStream file = new FileStream(imageFilePath, FileMode.Create))
+            {
+                encoder.Save(file);
+            }
+
+            // Create a PDF and embed the captured image
             PdfDocument pdf = new PdfDocument();
             PdfPage page = pdf.AddPage();
             XGraphics graph = XGraphics.FromPdfPage(page);
 
-            // Capture the window as an image
-            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(1200, 800, 96, 96, PixelFormats.Pbgra32);
-            renderTargetBitmap.Render(this);
+            // Load the captured image
+            XImage windowImage = XImage.FromFile(imageFilePath);
 
-            // Convert the image to a PDF-compatible format
-            MemoryStream memoryStream = new MemoryStream();
-            BitmapEncoder encoder = new BmpBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-            encoder.Save(memoryStream);
+            // Draw the image on the PDF page
+            graph.DrawImage(windowImage, 0, 0);
 
-            XImage image = XImage.FromStream(memoryStream);
-            graph.DrawImage(image, 0, 0);
-
-            // Save the PDF
-            string filePath = @"C:\\Users\\sasha\\Desktop\proanalysis.pdf"; 
-            pdf.Save(filePath);
+            // Save the PDF file
+            string pdfFilePath = Path.Combine(desktopPath, "windowContent.pdf");
+            pdf.Save(pdfFilePath);
         }
     }
 }
