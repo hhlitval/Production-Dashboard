@@ -28,7 +28,7 @@
                 <Button Style="{StaticResource topMenuButton}">
                     <icon:PackIconOcticons Kind="Calendar" Foreground="#31393c"/>
                 </Button>
-                <Button Style="{StaticResource topMenuButton}">
+                <Button Style="{StaticResource topMenuButton}" Click="PrintPDF_Click">
                     <icon:PackIconBootstrapIcons Kind="FilePdf" Foreground="#31393c"/>
                 </Button>
                 <Button Style="{StaticResource topMenuButton}" Click="PrintButton_Click">

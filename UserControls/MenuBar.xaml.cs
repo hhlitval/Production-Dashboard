@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Printing;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Markup;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace Production_Analysis.UserControls
 {
@@ -36,44 +25,35 @@ namespace Production_Analysis.UserControls
 
         private void PrintButton_Click(object sender, RoutedEventArgs e)
         {
-            //PrintDialog printDialog = new PrintDialog();
-            //FlowDocument doc = new FlowDocument();
-            //printDialog.PrintVisual(this, "Dashboard printing");
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(this, "Window Printing");
+            }
+        }
 
+        private void PrintPDF_Click(object sender, RoutedEventArgs e)
+        {
+            PdfDocument pdf = new PdfDocument();
+            PdfPage page = pdf.AddPage();
+            XGraphics graph = XGraphics.FromPdfPage(page);
 
+            // Capture the window as an image
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(1200, 800, 96, 96, PixelFormats.Pbgra32);
+            renderTargetBitmap.Render(this);
 
-            // Create a PrintDialog
-            //PrintDialog printDialog = new PrintDialog();
+            // Convert the image to a PDF-compatible format
+            MemoryStream memoryStream = new MemoryStream();
+            BitmapEncoder encoder = new BmpBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
+            encoder.Save(memoryStream);
 
-            //if (printDialog.ShowDialog() == true)
-            //{
-            //    // Get the selected printer
-            //    PrintQueue printQueue = printDialog.PrintQueue;
+            XImage image = XImage.FromStream(memoryStream);
+            graph.DrawImage(image, 0, 0);
 
-            //    // Create a FixedDocument to hold the content you want to print
-            //    FixedDocument fixedDocument = new FixedDocument();
-
-            //    // Create a FixedPage
-            //    FixedPage fixedPage = new FixedPage();
-            //    fixedPage.Width = printQueue.GetPrintCapabilities().PageImageableArea.ExtentWidth;
-            //    fixedPage.Height = printQueue.GetPrintCapabilities().PageImageableArea.ExtentHeight;
-
-            //    // Add your dashboard content to the FixedPage
-
-            //    Dashboard.Measure(new Size(fixedPage.Width, fixedPage.Height));
-            //    Dashboard.Arrange(new Rect(new Point(0, 0), Dashboard.DesiredSize));
-            //    fixedPage.Children.Add(Dashboard);
-
-            //    // Add the FixedPage to the FixedDocument
-            //    PageContent pageContent = new PageContent();
-            //    ((IAddChild)pageContent).AddChild(fixedPage);
-            //    fixedDocument.Pages.Add(pageContent);
-
-            //    // Print the FixedDocument
-            //    printDialog.PrintDocument(fixedDocument.DocumentPaginator, "Dashboard Printing");
-
-            //}
-
+            // Save the PDF
+            string filePath = @"C:\\Users\\sasha\\Desktop\proanalysis.pdf"; 
+            pdf.Save(filePath);
         }
     }
 }
