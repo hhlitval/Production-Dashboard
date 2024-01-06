@@ -17,7 +17,7 @@
                             <Border
                                   x:Name="Border"
                                   Grid.ColumnSpan="2"
-                                  CornerRadius="6"
+                                  CornerRadius="4"
                                   Background="{TemplateBinding Background}"
                                   BorderBrush="#F6F6F6"
                                   BorderThickness="0"/>
@@ -44,7 +44,7 @@
             <Setter Property="BorderBrush" Value="Gray" />
             <Setter Property="Background" Value="White" />
             <Setter Property="Width" Value="80" />
-            <Setter Property="Height" Value="30" />
+            <Setter Property="Height" Value="26" />
             <Setter Property="SnapsToDevicePixels" Value="true"/>
             <Setter Property="OverridesDefaultStyle" Value="true"/>
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
@@ -96,7 +96,7 @@
                               SnapsToDevicePixels="True"               
                               MinWidth="{TemplateBinding ActualWidth}">
                                     <Border
-                                    CornerRadius="6"
+                                    CornerRadius="4"
                                     x:Name="DropDownBorder"
                                     Background="White"
                                     BorderThickness="1"

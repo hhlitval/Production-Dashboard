@@ -1,5 +1,5 @@
 ﻿<Window x:Class="Production_Analysis.MainWindow"
-        x:Name="Dashboard"
+        x:Name="MyDashboard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,7 @@
         Background="Transparent" AllowsTransparency="True"
         WindowStyle="None" ResizeMode="NoResize" FontFamily="Global User Interface">
 
-    <Border Style="{StaticResource mainBorder}" MouseDown="Border_MouseDown">
+    <Border Style="{StaticResource mainBorder}" MouseDown="Border_MouseDown" x:Name="mainWindow">
         <views:MainView/>
     </Border>
 </Window>
