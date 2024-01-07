@@ -12,34 +12,67 @@ namespace Production_Analysis.ViewModels
     {
         private ObservableCollection<string>? _years;
 
+        private string _selectedYear;
+
+        public string SelectedYear
+        {
+            get { return _selectedYear; }
+            set 
+            { 
+                _selectedYear = value;
+                OnPropertyChanged(nameof(_selectedYear));
+                
+                TimePeriod = new TimePeriod()
+                {
+                    Start = new DateTime(int.Parse(_selectedYear), 1, 1),
+                    End = new DateTime(int.Parse(_selectedYear), 12, 31)
+                };
+                SelectedYearChanged?.Invoke();
+                UpdateViewModel(TimePeriod);
+            }
+        }
+
+        public event Action SelectedYearChanged;
+
         public TimePeriod TimePeriod { get; set; }
-                = new TimePeriod() { Start = new DateTime(2017, 1, 1), End = new DateTime(2017, 12, 31) };
         public ObservableCollection<string>? Years
         {
             get { return _years; }
             set
             {
                 _years = value;
-                OnPropertyChanged(nameof(Years));
+                OnPropertyChanged(nameof(Years));               
             }
         }
-        public ProductionVolumeViewModel ProductionVolumeViewModel { get; }
-        public ProductionDowntimeViewModel ProductionDowntimeViewModel { get; }
-        public EquipmentEffectivenessViewModel EquipmentEffectivenessViewModel { get; }
-        public InfoCardsViewModel InfoCardsViewModel { get; }
-        public ShippingMapViewModel ShippingMapViewModel { get; }
-        public ProductionCostsViewModel ProductionCostsViewModel { get; }
+
+        private void UpdateViewModel(TimePeriod timePeriod)
+        {
+            ProductionVolumeViewModel = new ProductionVolumeViewModel(timePeriod);
+            ProductionDowntimeViewModel = new ProductionDowntimeViewModel(timePeriod);
+            EquipmentEffectivenessViewModel = new EquipmentEffectivenessViewModel(timePeriod);
+            InfoCardsViewModel = new InfoCardsViewModel(timePeriod);
+            ShippingMapViewModel = new ShippingMapViewModel(timePeriod);
+            ProductionCostsViewModel = new ProductionCostsViewModel(timePeriod);
+        }
+
+        public ProductionVolumeViewModel ProductionVolumeViewModel { get; set; }
+        public ProductionDowntimeViewModel ProductionDowntimeViewModel { get; set; }
+        public EquipmentEffectivenessViewModel EquipmentEffectivenessViewModel { get; set; }
+        public InfoCardsViewModel InfoCardsViewModel { get; set; }
+        public ShippingMapViewModel ShippingMapViewModel { get; set; }
+        public ProductionCostsViewModel ProductionCostsViewModel { get; set; }
 
         [Obsolete]
         public MainViewModel()
         {
+            Years = LoadDbData.GetYearsData();
+            SelectedYear = Years[0];
             ProductionVolumeViewModel = new ProductionVolumeViewModel(TimePeriod);
             ProductionDowntimeViewModel = new ProductionDowntimeViewModel(TimePeriod);
             EquipmentEffectivenessViewModel = new EquipmentEffectivenessViewModel(TimePeriod);
             InfoCardsViewModel = new InfoCardsViewModel(TimePeriod);
             ShippingMapViewModel = new ShippingMapViewModel(TimePeriod);
-            ProductionCostsViewModel = new ProductionCostsViewModel(TimePeriod);
-            Years = LoadDbData.GetYearsData();
+            ProductionCostsViewModel = new ProductionCostsViewModel(TimePeriod);            
         }
     }
 }

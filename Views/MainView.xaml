@@ -38,7 +38,7 @@
                       VerticalAlignment="Center"
                       ItemContainerStyle="{DynamicResource comboBoxItem}"
                       ItemsSource="{Binding Years}"
-                      SelectedItem="2007">
+                      SelectedValue="{Binding SelectedYear}">
                     </ComboBox>
                     <Button Style="{StaticResource topMenuButton}">
                         <icon:PackIconOcticons Kind="Calendar" Foreground="#31393c"/>

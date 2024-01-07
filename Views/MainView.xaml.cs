@@ -25,10 +25,11 @@ namespace Production_Analysis.Views
         }
 
         private void PrintButton_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             PrintDialog printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
             {
+                printDialog.PrintTicket.PageOrientation = System.Printing.PageOrientation.Landscape;                
                 printDialog.PrintVisual(this, "Window Printing");
             }
         }
@@ -37,7 +38,7 @@ namespace Production_Analysis.Views
         {
             try
             {
-                RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)ActualWidth, (int)ActualHeight, 96, 96, PixelFormats.Pbgra32);
+                RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)ActualWidth+30, (int)ActualHeight+50, 96, 96, PixelFormats.Pbgra32);
                 renderTargetBitmap.Render(this);
 
                 // Create a PDF and embed the captured image

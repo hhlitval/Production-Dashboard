@@ -9,6 +9,7 @@ using System.Windows;
 using LiveChartsCore.SkiaSharpView;
 using Production_Analysis.Views;
 using Production_Analysis.ViewModels;
+using Production_Analysis.Models;
 
 namespace Production_Analysis
 

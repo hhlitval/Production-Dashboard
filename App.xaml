@@ -5,6 +5,7 @@
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Application.Resources>
 
+        <!--#region ComboBox -->
         <Style x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
             <Setter Property="Template">
                 <Setter.Value>
@@ -159,6 +160,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--#endregion-->
 
         <Style x:Key="topMenuButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
