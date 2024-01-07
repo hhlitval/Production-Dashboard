@@ -32,13 +32,15 @@
                     VerticalAlignment="Center">
 
                     <ComboBox Style="{DynamicResource comboBox}" 
-                      FontSize="14"                          
-                      Margin="0 7 0 7"
-                      HorizontalContentAlignment="Left"
-                      VerticalAlignment="Center"
-                      ItemContainerStyle="{DynamicResource comboBoxItem}"
-                      ItemsSource="{Binding Years}"
-                      SelectedValue="{Binding SelectedYear}">
+                              x:Name="comboBox"
+                              FontSize="14"                          
+                              Margin="0 7 0 7"
+                              HorizontalContentAlignment="Left"
+                              VerticalAlignment="Center"
+                              ItemContainerStyle="{DynamicResource comboBoxItem}"
+                              ItemsSource="{Binding Years}"
+                              SelectedIndex="1"
+                              SelectedItem="{Binding SelectedYear}">
                     </ComboBox>
                     <Button Style="{StaticResource topMenuButton}">
                         <icon:PackIconOcticons Kind="Calendar" Foreground="#31393c"/>

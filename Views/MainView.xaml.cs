@@ -1,5 +1,7 @@
 ﻿using PdfSharp.Drawing;
 using PdfSharp.Pdf;
+using Production_Analysis.Models;
+using Production_Analysis.ViewModels;
 using System;
 using System.IO;
 using System.Windows;
@@ -78,6 +80,6 @@ namespace Production_Analysis.Views
             {
                 MessageBox.Show("Error occurred: " + ex.Message);               
             }
-        }
+        }       
     }
 }

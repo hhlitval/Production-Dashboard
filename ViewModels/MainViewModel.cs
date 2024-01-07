@@ -5,56 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Production_Analysis.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private ObservableCollection<string>? _years;
+        public ObservableCollection<string>? Years { get; }
+        public TimePeriod TimePeriod { get; set; }
 
         private string _selectedYear;
 
-        public string SelectedYear
-        {
-            get { return _selectedYear; }
-            set 
-            { 
-                _selectedYear = value;
-                OnPropertyChanged(nameof(_selectedYear));
-                
-                TimePeriod = new TimePeriod()
-                {
-                    Start = new DateTime(int.Parse(_selectedYear), 1, 1),
-                    End = new DateTime(int.Parse(_selectedYear), 12, 31)
-                };
-                SelectedYearChanged?.Invoke();
-                UpdateViewModel(TimePeriod);
-            }
-        }
-
-        public event Action SelectedYearChanged;
-
-        public TimePeriod TimePeriod { get; set; }
-        public ObservableCollection<string>? Years
-        {
-            get { return _years; }
-            set
-            {
-                _years = value;
-                OnPropertyChanged(nameof(Years));               
-            }
-        }
-
-        private void UpdateViewModel(TimePeriod timePeriod)
-        {
-            ProductionVolumeViewModel = new ProductionVolumeViewModel(timePeriod);
-            ProductionDowntimeViewModel = new ProductionDowntimeViewModel(timePeriod);
-            EquipmentEffectivenessViewModel = new EquipmentEffectivenessViewModel(timePeriod);
-            InfoCardsViewModel = new InfoCardsViewModel(timePeriod);
-            ShippingMapViewModel = new ShippingMapViewModel(timePeriod);
-            ProductionCostsViewModel = new ProductionCostsViewModel(timePeriod);
-        }
-
+        public string SelectedYear { get; set; }
         public ProductionVolumeViewModel ProductionVolumeViewModel { get; set; }
         public ProductionDowntimeViewModel ProductionDowntimeViewModel { get; set; }
         public EquipmentEffectivenessViewModel EquipmentEffectivenessViewModel { get; set; }
@@ -66,13 +28,25 @@ namespace Production_Analysis.ViewModels
         public MainViewModel()
         {
             Years = LoadDbData.GetYearsData();
-            SelectedYear = Years[0];
+            SelectedYear = Years[1];
+            TimePeriod = new TimePeriod() { 
+                Start = new DateTime(int.Parse(SelectedYear), 1, 1),
+                End = new DateTime(int.Parse(SelectedYear), 12, 31)};
             ProductionVolumeViewModel = new ProductionVolumeViewModel(TimePeriod);
             ProductionDowntimeViewModel = new ProductionDowntimeViewModel(TimePeriod);
             EquipmentEffectivenessViewModel = new EquipmentEffectivenessViewModel(TimePeriod);
             InfoCardsViewModel = new InfoCardsViewModel(TimePeriod);
             ShippingMapViewModel = new ShippingMapViewModel(TimePeriod);
-            ProductionCostsViewModel = new ProductionCostsViewModel(TimePeriod);            
+            ProductionCostsViewModel = new ProductionCostsViewModel(TimePeriod);
+        }
+        public MainViewModel(TimePeriod timePeriod)
+        {
+            ProductionVolumeViewModel = new ProductionVolumeViewModel(timePeriod);
+            ProductionDowntimeViewModel = new ProductionDowntimeViewModel(timePeriod);
+            EquipmentEffectivenessViewModel = new EquipmentEffectivenessViewModel(timePeriod);
+            InfoCardsViewModel = new InfoCardsViewModel(timePeriod);
+            ShippingMapViewModel = new ShippingMapViewModel(timePeriod);
+            ProductionCostsViewModel = new ProductionCostsViewModel(timePeriod);            
         }
     }
 }
