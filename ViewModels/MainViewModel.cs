@@ -4,6 +4,8 @@ using Production_Analysis.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,12 +13,35 @@ namespace Production_Analysis.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public ObservableCollection<string>? Years { get; }
+        public event EventHandler<string>? SelectedYearChanged;
+        public List<string>? Years { get; set; }
         public TimePeriod TimePeriod { get; set; }
-
+        
         private string _selectedYear;
+        public string SelectedYear
+        {
+            get { return _selectedYear; }
+            set
+            {
+                _selectedYear = value;
+                OnPropertyChanged(nameof(SelectedYear));
+                SelectedYearChanged?.Invoke(this, SelectedYear);
+                //UpdateSelectedYear(_selectedYear);
+                
+            }
+        }
 
-        public string SelectedYear { get; set; }
+        //private void UpdateSelectedYear(string selectedYear)
+        //{
+        //    SelectedYear = selectedYear;
+        //    OnSelectedYearChanged();
+        //}
+
+        //private void OnSelectedYearChanged()
+        //{
+        //    SelectedYearChanged?.Invoke(this, SelectedYear);
+        //}
+
         public ProductionVolumeViewModel ProductionVolumeViewModel { get; set; }
         public ProductionDowntimeViewModel ProductionDowntimeViewModel { get; set; }
         public EquipmentEffectivenessViewModel EquipmentEffectivenessViewModel { get; set; }
@@ -24,29 +49,18 @@ namespace Production_Analysis.ViewModels
         public ShippingMapViewModel ShippingMapViewModel { get; set; }
         public ProductionCostsViewModel ProductionCostsViewModel { get; set; }
 
-        [Obsolete]
-        public MainViewModel()
+        
+        public MainViewModel(List<string> _years, string selectedYear)
         {
-            Years = LoadDbData.GetYearsData();
-            SelectedYear = Years[1];
-            TimePeriod = new TimePeriod() { 
-                Start = new DateTime(int.Parse(SelectedYear), 1, 1),
-                End = new DateTime(int.Parse(SelectedYear), 12, 31)};
+            Years = _years;
+            SelectedYear = selectedYear;
+            TimePeriod = new TimePeriod(selectedYear);
             ProductionVolumeViewModel = new ProductionVolumeViewModel(TimePeriod);
             ProductionDowntimeViewModel = new ProductionDowntimeViewModel(TimePeriod);
             EquipmentEffectivenessViewModel = new EquipmentEffectivenessViewModel(TimePeriod);
             InfoCardsViewModel = new InfoCardsViewModel(TimePeriod);
             ShippingMapViewModel = new ShippingMapViewModel(TimePeriod);
-            ProductionCostsViewModel = new ProductionCostsViewModel(TimePeriod);
-        }
-        public MainViewModel(TimePeriod timePeriod)
-        {
-            ProductionVolumeViewModel = new ProductionVolumeViewModel(timePeriod);
-            ProductionDowntimeViewModel = new ProductionDowntimeViewModel(timePeriod);
-            EquipmentEffectivenessViewModel = new EquipmentEffectivenessViewModel(timePeriod);
-            InfoCardsViewModel = new InfoCardsViewModel(timePeriod);
-            ShippingMapViewModel = new ShippingMapViewModel(timePeriod);
-            ProductionCostsViewModel = new ProductionCostsViewModel(timePeriod);            
+            ProductionCostsViewModel = new ProductionCostsViewModel(TimePeriod);            
         }
     }
 }

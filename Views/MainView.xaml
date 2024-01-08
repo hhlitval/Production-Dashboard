@@ -39,7 +39,6 @@
                               VerticalAlignment="Center"
                               ItemContainerStyle="{DynamicResource comboBoxItem}"
                               ItemsSource="{Binding Years}"
-                              SelectedIndex="1"
                               SelectedItem="{Binding SelectedYear}">
                     </ComboBox>
                     <Button Style="{StaticResource topMenuButton}">
