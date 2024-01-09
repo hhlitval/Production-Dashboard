@@ -27,7 +27,7 @@ namespace Production_Analysis.ViewModels
                     DataPadding = new LvcPoint(0, 0.5),
                     Values = productionOutput.Select(o => o.ProductionOutput),
                     Name = null,
-                    //Fill = null,
+                    Fill = new SolidColorPaint(new SKColor(247, 247, 255)),
                     Stroke = new SolidColorPaint(new SKColor(90, 169, 230)){StrokeThickness = 3},
                     GeometrySize = 0,
                     LineSmoothness = 1
