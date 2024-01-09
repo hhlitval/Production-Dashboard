@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Production Analysis", "Production Analysis.csproj", "{4BF0E88A-8A92-4AAA-918A-1E876700AA3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Production Dashboard", "Production Dashboard.csproj", "{4BF0E88A-8A92-4AAA-918A-1E876700AA3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
