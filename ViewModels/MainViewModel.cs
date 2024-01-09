@@ -24,23 +24,10 @@ namespace Production_Analysis.ViewModels
             set
             {
                 _selectedYear = value;
-                OnPropertyChanged(nameof(SelectedYear));
-                SelectedYearChanged?.Invoke(this, SelectedYear);
-                //UpdateSelectedYear(_selectedYear);
-                
+                //OnPropertyChanged(nameof(SelectedYear));
+                SelectedYearChanged?.Invoke(this, SelectedYear);                
             }
-        }
-
-        //private void UpdateSelectedYear(string selectedYear)
-        //{
-        //    SelectedYear = selectedYear;
-        //    OnSelectedYearChanged();
-        //}
-
-        //private void OnSelectedYearChanged()
-        //{
-        //    SelectedYearChanged?.Invoke(this, SelectedYear);
-        //}
+        }        
 
         public ProductionVolumeViewModel ProductionVolumeViewModel { get; set; }
         public ProductionDowntimeViewModel ProductionDowntimeViewModel { get; set; }

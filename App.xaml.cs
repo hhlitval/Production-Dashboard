@@ -45,7 +45,7 @@ namespace Production_Analysis
 
         private void ViewModel_SelectedYearChanged(object sender, string selectedYear)
         {
-            MainWindow.DataContext = new MainViewModel(_years, selectedYear);            
+            MainWindow.DataContext = new MainViewModel(_years, selectedYear);
         }
     }
 }
