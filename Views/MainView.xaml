@@ -24,7 +24,7 @@
         <!-- Menu Bar -->        
         <Border CornerRadius="10 10 0 0" Background="#7fc8f8" Grid.Row="0" Grid.ColumnSpan="5">
             <Grid>
-                <Image Source="\Images\proanalysis.png" HorizontalAlignment="Left" Margin="20 0 0 0"/>
+                <Image Source="\Images\prodashboard.png" HorizontalAlignment="Left" Margin="20 0 0 0"/>
                 <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
                     HorizontalAlignment="Right" 
                     Margin="0 0 10 0" 
@@ -32,14 +32,13 @@
                     VerticalAlignment="Center">
 
                     <ComboBox Style="{DynamicResource comboBox}" 
-                              x:Name="comboBox"
                               FontSize="14"                          
                               Margin="0 7 0 7"
                               HorizontalContentAlignment="Left"
                               VerticalAlignment="Center"
                               ItemContainerStyle="{DynamicResource comboBoxItem}"
                               ItemsSource="{Binding Years}"
-                              SelectedItem="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}">
+                              SelectedItem="{Binding SelectedYear}">
                     </ComboBox>
                     <Button Style="{StaticResource topMenuButton}">
                         <icon:PackIconOcticons Kind="Calendar" Foreground="#31393c"/>

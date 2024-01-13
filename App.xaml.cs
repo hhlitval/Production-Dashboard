@@ -20,32 +20,5 @@ namespace Production_Analysis
     /// </summary>
     public partial class App : Application
     {
-        private readonly List<string> _years = LoadDbData.GetYearsData();
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            MainWindow = new MainWindow()
-            {
-                DataContext = new MainViewModel(_years, _years.FirstOrDefault())
-            };
-
-            SubscribeToSelectedYearChangedEvent();
-
-            MainWindow.Show();
-
-            base.OnStartup(e);
-        }
-
-        private void SubscribeToSelectedYearChangedEvent()
-        {
-            if (MainWindow.DataContext is MainViewModel viewModel)
-            {
-                viewModel.SelectedYearChanged += ViewModel_SelectedYearChanged;
-            }
-        }
-
-        private void ViewModel_SelectedYearChanged(object sender, string selectedYear)
-        {
-            MainWindow.DataContext = new MainViewModel(_years, selectedYear);
-        }
     }
 }
