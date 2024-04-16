@@ -40,7 +40,7 @@ namespace Production_Analysis.ViewModels
         public MainViewModel(List<string> _years, string selectedYear)
         {
             Years = _years;
-            //SelectedYear = selectedYear;
+            SelectedYear = selectedYear;
             TimePeriod = new TimePeriod(selectedYear);
             ProductionVolumeViewModel = new ProductionVolumeViewModel(TimePeriod);
             ProductionDowntimeViewModel = new ProductionDowntimeViewModel(TimePeriod);
