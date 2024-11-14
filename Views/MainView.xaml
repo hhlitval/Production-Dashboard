@@ -24,12 +24,26 @@
         <!-- Menu Bar -->        
         <Border CornerRadius="10 10 0 0" Background="#7fc8f8" Grid.Row="0" Grid.ColumnSpan="5">
             <Grid>
-                <Image Source="\Images\prodashboard.png" HorizontalAlignment="Left" Margin="20 0 0 0"/>
+                <StackPanel Grid.Row="0" Grid.Column="0"
+                             HorizontalAlignment="Left"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            >
+                    <Image 
+                        VerticalAlignment="Center"
+                        Margin="20 10 10 10"
+                        Source="../Images/dashboard.png"/>
+                    <TextBlock Text="ProDash" VerticalAlignment="Center" Margin="0 15 0 10"
+                               FontSize="16"
+                               FontWeight="Bold" Foreground="#FF31393C"
+                               />
+                </StackPanel>
                 <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
                     HorizontalAlignment="Right" 
                     Margin="0 0 10 0" 
                     Orientation="Horizontal" 
                     VerticalAlignment="Center">
+                    
 
                     <ComboBox Style="{DynamicResource comboBox}" 
                               FontSize="14"                          
@@ -39,6 +53,7 @@
                               ItemContainerStyle="{DynamicResource comboBoxItem}"
                               ItemsSource="{Binding Years}"
                               SelectedItem="{Binding SelectedYear}">
+                        <!--SelectionChanged="{Binding SelectedYearChanged}">-->
                     </ComboBox>
                     <Button Style="{StaticResource topMenuButton}">
                         <icon:PackIconOcticons Kind="Calendar" Foreground="#31393c"/>
@@ -64,7 +79,7 @@
         <Border Grid.Row="1" Grid.Column="0" 
             Style="{StaticResource borderViewModel}"                    
             Margin="20 10 5 10">
-            <views:ProductionVolumeView/>
+            <views:ProductionVolumeView Loaded="ProductionVolumeView_Loaded"/>
         </Border>
 
         <!-- Production Downtime View -->

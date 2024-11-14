@@ -228,9 +228,9 @@ namespace Production_Analysis.DbServices
             }
         }
 
-        public static List<string> GetYearsData()
+        public static ObservableCollection<string> GetYearsData()
         {
-            var years = new List<string>();
+            var years = new ObservableCollection<string>();
 
             using (var connection = new DbConnection().GetConnection())
             {

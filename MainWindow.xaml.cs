@@ -13,6 +13,7 @@ using System.Reflection.Metadata;
 using Production_Analysis.DbServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace Production_Analysis
 {
@@ -22,33 +23,27 @@ namespace Production_Analysis
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly List<string> _years = LoadDbData.GetYearsData();
+        private readonly ObservableCollection<string> _years = LoadDbData.GetYearsData();
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel(_years, _years.FirstOrDefault());
-            SubscribeToSelectedYearChangedEvent();
+            MainViewModel mainViewModel = new MainViewModel(_years, _years.FirstOrDefault());            
+            DataContext = mainViewModel;
+            mainViewModel.SelectedYearChanged += ViewModel_SelectedYearChanged;
         }
+        
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                this.DragMove();
+                DragMove();
             }
-        }
-
-        private void SubscribeToSelectedYearChangedEvent()
-        {
-            if (DataContext is MainViewModel viewModel)
-            {
-                viewModel.SelectedYearChanged += ViewModel_SelectedYearChanged;
-            }
-        }
+        }        
 
         private void ViewModel_SelectedYearChanged(object sender, string selectedYear)
         {
-            mainWindow.DataContext = new MainViewModel(_years, selectedYear);
+            DataContext = new MainViewModel(_years, selectedYear);
         }
     }
 }

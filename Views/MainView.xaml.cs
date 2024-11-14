@@ -80,6 +80,11 @@ namespace Production_Analysis.Views
             {
                 MessageBox.Show("Error occurred: " + ex.Message);               
             }
-        }       
+        }
+
+        private void ProductionVolumeView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

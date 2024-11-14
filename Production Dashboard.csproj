@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\dashboard.png" />
     <None Remove="Images\proanalysis.png" />
     <None Remove="Images\proanalysis2.png" />
     <None Remove="Images\prodashboard.png" />
@@ -23,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\dashboard.png" />
     <Resource Include="Images\prodashboard.png" />
   </ItemGroup>
 

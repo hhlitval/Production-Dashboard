@@ -14,7 +14,7 @@ namespace Production_Analysis.ViewModels
     public class MainViewModel : BaseViewModel
     {
         public event EventHandler<string>? SelectedYearChanged;
-        public List<string>? Years { get; set; }
+        public ObservableCollection<string>? Years { get; set; }
         public TimePeriod TimePeriod { get; set; }
         
         private string _selectedYear;
@@ -37,7 +37,7 @@ namespace Production_Analysis.ViewModels
         public ProductionCostsViewModel ProductionCostsViewModel { get; set; }
 
         
-        public MainViewModel(List<string> _years, string selectedYear)
+        public MainViewModel(ObservableCollection<string> _years, string selectedYear)
         {
             Years = _years;
             SelectedYear = selectedYear;
@@ -49,5 +49,7 @@ namespace Production_Analysis.ViewModels
             ShippingMapViewModel = new ShippingMapViewModel(TimePeriod);
             ProductionCostsViewModel = new ProductionCostsViewModel(TimePeriod);            
         }
+
+        
     }
 }
