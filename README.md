@@ -64,4 +64,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) f
 - [LiveCharts2](https://livecharts.dev/) for the charting library.
 
 ## Contact
-For any inquiries or support, please contact me (https://alexlitvin.com).
+For any inquiries or support, please [contact me](https://alexlitvin.com).
