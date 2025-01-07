@@ -1,6 +1,6 @@
 # Production Dashboard
 
-![ProDash UI](pro_dash_.png)
+![ProDash UI](pro_dash.png)
 
 Production Dashboard is a dashboard application designed to visualize key performance indicators (KPIs) for manufacturing operations. It provides a comprehensive overview of production metrics, enabling users to monitor and analyze data effectively. The application is written in C# using the Windows Presentation Foundation (WPF) framework and leverages the LiveCharts2 library for graphical representations.
 
@@ -58,7 +58,7 @@ Production Dashboard is a dashboard application designed to visualize key perfor
 Contributions are welcome! If you have suggestions for improvements or new features, please create an issue or submit a pull request.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) file for details.
 
 ## Acknowledgments
 - [LiveCharts2](https://livecharts.dev/) for the charting library.
